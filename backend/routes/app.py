@@ -7,15 +7,15 @@ from models.users import Users
 
 app = Flask(__name__)
 
-cred = credentials.Certificate('key.json')
+# cred = credentials.Certificate('key.json')
 
 
-default_app = initialize_app(cred)
-db = firestore.client()
-# todo_ref = db.collection('todos')
-Users.users_ref = db.collection('users')
-Vehicle.vehicle_ref = db.collection('vehicle')
-Trip.trip_ref = db.collection('trip')
+# default_app = initialize_app(cred)
+# db = firestore.client()
+# # todo_ref = db.collection('todos')
+# Users.users_ref = db.collection('users')
+# Vehicle.vehicle_ref = db.collection('vehicle')
+# Trip.trip_ref = db.collection('trip')
 
 @app.route("/api/users_add", methods=["POST"])
 def users_create():
@@ -25,8 +25,17 @@ def users_create():
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
     try:
-        id = request.json['id']
-        new_users = Users()
+        
+        user_id = request.json.get("user_id")
+        username = request.json.get("username")
+        password = request.json.get("password")
+        email = request.json.get("email")
+        first_name = request.json.get("first_name")
+        last_name = request.json.get("last_name")
+        home_lat = request.json.get("home_lat")
+        home_long = request.json.get("home_long")
+        new_users = Users(user_id, username, password, email, first_name,
+                            last_name, home_lat, home_long)
         new_users.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -41,8 +50,18 @@ def vehicle_create():
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
     try:
-        id = request.json['id']
-        new_vehicle = Vehicle()
+       
+        user_id = request.json.get("user_id")
+        type_vehicle = request.json.get("type")
+        make = request.json.get("make")
+        model = request.json.get("model")
+        total_miles = request.json.get("total_miles")
+        tire_miles = request.json.get("tire_miles")
+        tire_purchase_date = request.json.get("tire_purchase_date")
+        rotation_miles = request.json.get("rotation_miles")
+        vehicle_id = request.json.get("vehicle_id")
+        new_vehicle = Vehicle(user_id, type_vehicle, make, model, total_miles, tire_miles, 
+                                tire_purchase_date, rotation_miles, user_id, vehicle_id)
         new_vehicle.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -57,8 +76,15 @@ def trip_create():
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
     try:
-        id = request.json['id']
-        new_trip = Trip()
+        
+        user_id = request.json.get("user_id")
+        destination_add  = request.json.get("destination_add")
+        start_add = request.json.get("start_add")
+        distance = request.json.get("distance")
+        weather = request.json.get("weather")
+        vehicle_id =request.json.get("vehicle_id")
+        new_trip = Trip(user_id, destination_add, start_add, distance,
+                        weather, vehicle_id,)
         new_trip.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -82,9 +108,9 @@ def users_read():
         # else:
         #     all_todos = [doc.to_dict() for doc in todo_ref.stream()]
         #     return jsonify(all_todos), 200
-        users_id = request.args.get('id')
-        if users_id:
-            users = Users.users_ref.document(users_id).get()
+        user_id = request.args.get(["user_id"])
+        if user_id:
+            users = Users.users_ref.document(user_id).get()
             return jsonify(users.to_dict()), 200
         else:
             all_users = [doc.to_dict() for doc in Users.users_ref.stream()]
@@ -92,7 +118,7 @@ def users_read():
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route("/api/user_vehicle", methods=["POST", "PUT"])
+@app.route("/api/users_vehicle", methods=["POST", "PUT"])
 def vehicle_read():
     """
         read() : Fetches documents from Firestore collection as JSON.
@@ -100,14 +126,15 @@ def vehicle_read():
         all_todos : Return all documents.
     """
     try:
-        users_id = request.json.get(["users_id"])
-        if users_id:
-            vehicle = Vehicle.vehicle_ref.document(vehicle_id).get()
-            vehicles = Vehicle.vehicle_ref.where("users_id", "==", users_id).get()
-            print(vehicles)
+        user_id = request.json.get(["user_id"])
+        if user_id:
+            
+            
+        
 
-            vehicles = Vehicle.vehicles_for_user(users_id)
-            return jsonify(vehicle.to_dict()), 200
+            vehicles = Vehicle.vehicles_for_user(user_id)
+            print(vehicles)
+            return jsonify(vehicles.to_dict()), 200
         else:
             # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
             # return jsonify(all_vehicle), 200
@@ -118,7 +145,7 @@ def vehicle_read():
 # firebase dqta is organized like:
 # "document_id" : {"key1": value1, "key2": 14}
 
-@app.route("/api/user_trip", methods=["POST", "PUT"])
+@app.route("/api/users_trip", methods=["POST", "PUT"])
 def trip_read():
     """
         read() : Fetches documents from Firestore collection as JSON.
@@ -137,7 +164,7 @@ def trip_read():
         return f"An Error Occured: {e}"
    
 
-@app.route('/update', methods=['POST', 'PUT'])
+@app.route("/api/update_users", methods=['POST', 'PUT'])
 def update():
     """
         update() : Update document in Firestore collection with request body.
@@ -154,7 +181,7 @@ def update():
         return f"An Error Occured: {e}"
 
 
-@app.route('/update', methods=['POST', 'PUT'])
+@app.route("/api/update_vehicle", methods=['POST', 'PUT'])
 def vehicle_update():
     """
         update() : Update document in Firestore collection with request body.
@@ -170,7 +197,7 @@ def vehicle_update():
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route('/update', methods=['POST', 'PUT'])
+@app.route("/api/udate_trip", methods=['POST', 'PUT'])
 def trip_update():
     """
         update() : Update document in Firestore collection with request body.
@@ -186,7 +213,7 @@ def trip_update():
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route('/delete/<id>', methods=['GET', 'DELETE'])
+@app.route("/api/delete_users/<id>", methods=['GET', 'DELETE'])
 def delete(id):
     """
         delete() : Delete a document from Firestore collection.
@@ -201,7 +228,7 @@ def delete(id):
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route('/delete/<id>', methods=['GET', 'DELETE'])
+@app.route("/api/delete_vehicle/<id>", methods=['GET', 'DELETE'])
 def vehicle_delete(id):
     """
         delete() : Delete a document from Firestore collection.
@@ -216,7 +243,7 @@ def vehicle_delete(id):
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route('/delete/<id>', methods=['GET', 'DELETE'])
+@app.route("/api/delete_trip/<id>", methods=['GET', 'DELETE'])
 def trip_delete(id):
     """
         delete() : Delete a document from Firestore collection.

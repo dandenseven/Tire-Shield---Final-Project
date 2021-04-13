@@ -39,8 +39,8 @@ class Vehicle:
         self.vehicle_ref.document(self.vehicle_id).delete(self.to_json())
 
     @classmethod
-    def vehicles_for_users(cls, users_id):
-        return cls.vehicle_ref.where("users_id", "==", users_id).get()
+    def vehicles_for_users(cls, user_id):
+        return cls.vehicle_ref.where("user_id", "==", user_id).get()
 
 if __name__ == "__main__":
     pass
