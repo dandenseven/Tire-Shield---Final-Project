@@ -108,13 +108,15 @@ def users_read():
         # else:
         #     all_todos = [doc.to_dict() for doc in todo_ref.stream()]
         #     return jsonify(all_todos), 200
-        user_id = request.args.get(["user_id"])
+        user_id = request.json.get(["user_id"])
         if user_id:
-            users = Users.users_ref.document(user_id).get()
+
+            users = Users.users_for_user(user_id)
+            print(users)
             return jsonify(users.to_dict()), 200
         else:
-            all_users = [doc.to_dict() for doc in Users.users_ref.stream()]
-            return jsonify(all_users), 200
+            # all_users = [doc.to_dict() for doc in Users.users_ref.stream()]
+            # return jsonify(all_users), 200
     except Exception as e:
         return f"An Error Occured: {e}"
 
@@ -129,9 +131,6 @@ def vehicle_read():
         user_id = request.json.get(["user_id"])
         if user_id:
             
-            
-        
-
             vehicles = Vehicle.vehicles_for_user(user_id)
             print(vehicles)
             return jsonify(vehicles.to_dict()), 200
@@ -153,13 +152,14 @@ def trip_read():
         all_todos : Return all documents.
     """
     try:
-        trip_id = request.args.get('id')
-        if trip_id:
-            trip = Trip.trip_ref.document(trip_id).get()
-            return jsonify(trip.to_dict()), 200
+        user_id = request.json.get(["user_id"])
+        if user_id:
+            trips = Trip.trips_for_user(user_id)
+            print(trips)
+            return jsonify(vehicles.to_dict()), 200
         else:
-            all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
-            return jsonify(all_trip), 200
+            # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
+            # return jsonify(all_trip), 200
     except Exception as e:
         return f"An Error Occured: {e}"
    
