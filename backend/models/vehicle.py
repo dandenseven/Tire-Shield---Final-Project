@@ -4,9 +4,9 @@ class Vehicle:
 
     vehicle_ref = "" # we could set this later at runtime
     
-    def __init__(self, type, make, model, total_miles, tire_miles, 
+    def __init__(self, type_vehicle, make, model, total_miles, tire_miles, 
                     tire_purchase_date, rotation_miles, user_id, vehicle_id):
-        self.type = type
+        self.type = type_vehicle
         self.make = make
         self.model = model
         self.total_miles = total_miles
@@ -18,7 +18,7 @@ class Vehicle:
 
 
     def to_json(self):
-        return {"type": self.type,
+        return {"type_vehicle": self.type,
                 "make": self.make, 
                 "model": self.model, 
                 "total_miles": self.total_miles, 
@@ -41,6 +41,7 @@ class Vehicle:
     @classmethod
     def vehicles_for_users(cls, user_id):
         return cls.vehicle_ref.where("user_id", "==", user_id).get()
+
 
 if __name__ == "__main__":
     pass

@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
+import firebase from 'firebase';
+import 'firebase/auth';
 
 export default function Login({ loginFunc }) {
-    const [inputUsername, setInputUsername] = useState("");
+    const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
 
 
-    function usernameChangeHandler(e) {
-        setInputUsername(e.target.value)
+    function useremailChangeHandler(e) {
+        setInputEmail(e.target.value)
     }
 
     function passwordChangeHandler(e) {
         setInputPassword(e.target.value)
     }
 
+    const firebaseConfig = {
+        apiKey: "AIzaSyDEbzt9TfJJZZxuZsH_qXv3eeb5g62GgmE",
+        authDomain: "my-finalproject-2b552.firebaseapp.com",
+        projectId: "my-finalproject-2b552",
+        storageBucket: "my-finalproject-2b552.appspot.com",
+        messagingSenderId: "512038742459",
+        appId: "1:512038742459:web:cd68f269818ae75585bc9e",
+        measurementId: "G-LZBJTEXX4X"
+    };
+
+    !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
     const sendLogin = async () => {
         const userData = JSON.stringify({
-            username: inputUsername,
+            username: inputEmail,
             password: inputPassword
         })
         const config = {
@@ -25,7 +38,12 @@ export default function Login({ loginFunc }) {
             body: userData
 
         }
-        const response = await fetch("http://localhost:8080/api/Login");
+
+
+        const loginUser = await firebase.auth().signInWithEmailAndPassword(inputEmail, inputPassword)
+        console.log(loginUser)
+
+        const response = await fetch("http://localhost:8080/api/Login", config);
         const data = await response.json()
         console.log(data); 
     }
@@ -33,10 +51,11 @@ export default function Login({ loginFunc }) {
      return (
         <div>
           <h3>Login</h3>
-          <p>username</p><input type="username" onClick={usernameChangeHandler}/><br/>
-          <p>password</p><input type="password" onClick={passwordChangeHandler}/><br/>
+          <p>email</p><input type="email" onChange={useremailChangeHandler}/><br/>
+          <p>password</p><input type="password" onChange={passwordChangeHandler}/><br/>
           <button onClick={sendLogin}>Login</button><bk/>
-          
+          <p> Don't have an accoun? <Link to={Signup}>SignUp</Link></p>
         </div>
     )
 }
+
