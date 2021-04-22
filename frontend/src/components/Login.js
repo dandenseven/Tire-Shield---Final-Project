@@ -54,7 +54,7 @@ export default function Login({ loginFunc }) {
           <p>email</p><input type="email" onChange={useremailChangeHandler}/><br/>
           <p>password</p><input type="password" onChange={passwordChangeHandler}/><br/>
           <button onClick={sendLogin}>Login</button><bk/>
-          <p> Don't have an accoun? <Link to={Signup}>SignUp</Link></p>
+          {/* <p> Don't have an accoun? <Link to={Signup}>SignUp</Link></p> */}
         </div>
     )
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Firebase, { FirebaseContext } from './components/firebase'
+// import App from './App';
+import App from './components_react/App';
+import Firebase, { FirebaseContext } from './components_react/Firebase'
 import reportWebVitals from './reportWebVitals';
 
 

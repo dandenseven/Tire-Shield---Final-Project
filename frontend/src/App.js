@@ -16,6 +16,14 @@ function App() {
 
 
   return (
+
+
+    <LoginContext.Providers; value={'new': Firebase()}>
+        <Login />
+        <Signup />
+        <Logout />
+        <Homepage />
+    </LoginContext.Provider>
     
       <BrowserRouter>
           <NavBar />
@@ -44,12 +52,7 @@ function App() {
 
 
 
-    <LoginContext.Providers; value={'new': Firebase()}>
-        <Login />
-        <Signup />
-        <Logout />
-        <Homepage />
-    </LoginContext.Provider>
+
 }
 
 class Firebase {

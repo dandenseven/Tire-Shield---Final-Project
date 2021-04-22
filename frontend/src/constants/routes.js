@@ -1,7 +1,7 @@
-export const LANDING = '/';
-export const SIGN_UP = '/signup';
-export const SIGN_IN = '/signin';
-export const HOME = '/home';
-export const ACCOUNT = '/account';
-export const ADMIN = '/admin';
-export const PASSWORD_FORGET = '/pw-forget';
+export const LANDING = '/Landing';
+export const SIGN_UP = '/SignUp';
+export const SIGN_IN = '/SignIn';
+export const HOME = '/Home';
+export const ACCOUNT = '/Account';
+export const ADMIN = '/Admin';
+export const PASSWORD_FORGET = '/PasswordForget';
