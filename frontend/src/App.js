@@ -6,7 +6,7 @@ import Signup from './components/Signup';
 import Logout from './components/Logout';
 import Trips from './components/Trips';
 import Weather from './components/Weather';
-import TireMain from './components/TireMain';
+import TireMain from './components/TireMaintenance';
 import NavBar from './components/NavBar';
 
 import './App.css';

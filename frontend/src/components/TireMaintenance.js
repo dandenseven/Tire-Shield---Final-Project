@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function TireMain() {
 
@@ -23,5 +23,6 @@ function TireMain() {
         </div>
     )
 }
+
 
 export default TireMain;

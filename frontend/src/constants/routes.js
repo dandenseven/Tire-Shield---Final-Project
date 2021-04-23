@@ -4,4 +4,7 @@ export const SIGN_IN = '/SignIn';
 export const HOME = '/Home';
 export const ACCOUNT = '/Account';
 export const ADMIN = '/Admin';
+export const TIREMAIN = '/Tiremain';
 export const PASSWORD_FORGET = '/PasswordForget';
+export const TRIPS = '/Trips';
+export const WEATHER = '/Weather';
