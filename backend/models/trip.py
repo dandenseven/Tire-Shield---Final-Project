@@ -1,8 +1,11 @@
 from firebase_admin import credentials, firestore, initialize_app
 
+
 class Trip:
 
+
     trip_ref = ""
+    
     
     def __init__(self, destination_add, start_add, distance,
                     weather, vehicle_id, user_id):
@@ -38,3 +41,5 @@ class Trip:
     @classmethod
     def trips_for_users(cls, user_id):
         return cls.vehicle_ref.where("user_id", "==", user_id).get()
+
+

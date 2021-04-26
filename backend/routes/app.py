@@ -45,6 +45,25 @@ def login():
     except Exception as e:
             return f"An Error Occured: {e}"
 
+
+@app.route("api.weather.com/v2/turbo/vt1observation", methods=["GET"])
+def weather():
+    try:
+
+        id = request.json.get("id")
+        vt1observation = request.json.get("vt1observation")
+            
+
+        return jsonify({"OK. The request has succeeded.": True}), 200
+    except ConnectionError:
+        return jsonify({"Internal server error": "Could not connect to Weather Channel"}), 500
+    except WeatherError:
+        return jsonify({"error": "Requested endpoint not found"}), 404
+    return jsonify({"id": id, "vt1observation": vt1observation})
+        
+
+
+
 # create
 # curl localhost:8080/add -X POST -H "Content-Type: application/json" -d '{"id": "1", "destination": "NYC", "vehicle": "toyota"}'
 # curl localhost:8080/add -X POST -H "Content-Type: application/json" -d '{"id": "1", "username": "1name", "password": "1password",
