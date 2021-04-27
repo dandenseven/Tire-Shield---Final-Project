@@ -5,8 +5,8 @@ class Users:
 
     users_ref = ""
     
-    def __init__(self, username=username, email=email, first_name=first_name, last_name=last_name,
-                    home_lat=home_lat, home_long=home_long, user_id=user_id):
+    def __init__(self, username="", email="", first_name="", last_name="",
+                    home_lat=None, home_long=None, user_id=None):
         self.username = username
         self.email = email
         self.first_name = first_name

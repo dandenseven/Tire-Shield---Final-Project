@@ -4,8 +4,12 @@ from firebase_admin import credentials, firestore, initialize_app
 from models.vehicle import Vehicle
 from models.trip import Trip
 from models.users import Users
+from flask_cors import CORS
+
+
 
 app = Flask(__name__)
+CORS(app)
 
 # cred = credentials.Certificate('key.json')
 
@@ -44,24 +48,6 @@ def login():
         
     except Exception as e:
             return f"An Error Occured: {e}"
-
-
-@app.route("api.weather.com/v2/turbo/vt1observation", methods=["GET"])
-def weather():
-    try:
-
-        id = request.json.get("id")
-        vt1observation = request.json.get("vt1observation")
-            
-
-        return jsonify({"OK. The request has succeeded.": True}), 200
-    except ConnectionError:
-        return jsonify({"Internal server error": "Could not connect to Weather Channel"}), 500
-    except WeatherError:
-        return jsonify({"error": "Requested endpoint not found"}), 404
-    return jsonify({"id": id, "vt1observation": vt1observation})
-        
-
 
 
 # create
@@ -253,7 +239,7 @@ def vehicle_read():
         all_todos : Return all documents.
     """
     try:
-        user_id = request.json.get(["user_id"])
+        user_id = request.json.get("user_id")
         if user_id:
             
             vehicles = Vehicle.vehicles_for_user(user_id)
@@ -262,9 +248,10 @@ def vehicle_read():
         else:
             # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
             # return jsonify(all_vehicle), 200
-            return
+            return jsonify({"vehicles": []})
     except Exception as e:
         return f"An Error Occured: {e}"
+    return jsonify({"vehicles": []})
 
 # firebase dqta is organized like:
 # "document_id" : {"key1": value1, "key2": 14}
@@ -293,6 +280,22 @@ def trip_read():
 # curl localhost:8080/update -X POST -H "Content-Type: application/json" -d '{"id": "1", "title": "new lists"}'
 # update
 # curl localhost:5000/api/update_users -X POST -H "Content-Type: application/json" -d '{"email": "mmynew@email.com"}'
+
+@app.route("/api/users_weather", methods=["GET"])
+def weather_read():
+    try:
+
+        users_id = request.json.get("users_id")
+            return jsonify(trips.to_dict()), 200
+        else:
+            # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
+            # return jsonify(all_trip), 200
+            pass
+    except Exception as e:
+        return f"An Error Occured: {e}"
+            
+
+
 
 
 @app.route("/api/update_users", methods=['POST', 'PUT'])
