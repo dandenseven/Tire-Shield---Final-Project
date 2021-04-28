@@ -19,43 +19,48 @@ function TireMainPage() {
 
     }
 
-    const[update_vehicles, setUpdateVehicles] = useState([]);
+    // const[update_vehicles, setUpdateVehicles] = useState([]);
 
-    async function getUpdateVehicles() {
-        const configs = {
-            method: 'post',
-            data: JSON.stringify({"user_id": userId}),
-            headers: {"Content-Type": "application/json"}
-        }
-        const response = await fetch("http://localhost:5000/api/update_vehicle", configs);
-        const update_vehicles = await response.json();
-        setUpdateVehicles(update_vehicles);
+    // async function getUpdateVehicles() {
+    //     const configs = {
+    //         method: 'post',
+    //         data: JSON.stringify({"user_id": userId}),
+    //         headers: {"Content-Type": "application/json"}
+    //     }
+    //     const response = await fetch("http://localhost:5000/api/update_vehicle", configs);
+    //     const update_vehicles = await response.json();
+    //     setUpdateVehicles(update_vehicles);
 
-    }
+    // }
 
 
     // useEffect to get data upon component loading
     useEffect (() => getVehicles(), []);
 
-
-
-    useEffect (() => getUpdateVehicles(), []);
+    // useEffect (() => getUpdateVehicles(), []);
 
 
 // const TireMainPage = () => 
     return (
-        <AuthUserContext.Consumer> 
-            {authUser => (
-            <div>
-                <h2>Tire Milage</h2>
-                <h2>Current Tire Miles</h2>
-                <h2>Tire Warning Message!</h2>
-                <button onClick={() => setVehicles(getVehicles)}>Enter Miles</button>
-                <button onClick={() => setUpdateVehicles(getUpdateVehicles)}>Update Miles</button>
+        
+        <div>
+            <h2>Tire Milage</h2>
+            <h2>Current Tire Miles</h2>
+            <h2>Tire Warning Message!</h2>
+            {vehicles.map(vehicle => {
+                <div>
+                    <p>{vehicle.make}</p>
+                    <p>{vehicle.model}</p>
+                    <p>{vehicle.total_miles}</p>
+                    <p>{vehicle.tire_miles}</p>
+                    <p>{vehicle.tire_purchase_date}</p>
+                    <p>{vehicle.rotation_miles}</p>
+                    <p>{vehicle.color}</p>
+                    <p>{vehicle.user_id}</p>
+                </div>
+            })}
+        </div>
 
-            </div>
-            )}
-        </AuthUserContext.Consumer>
     );
 
 }

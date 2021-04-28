@@ -3,14 +3,14 @@ import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 function TripsPage() { 
-    const[trips, setTrips] = useState();
+    const[trips, setTrips] = useState([]);
 
-    const userId = useContext(FirebaseContext).uid
+    const userId = useContext(FirebaseContext).auth.currentUser.uid
 
     async function getTrips() {
         const configs = {
             method: 'post',
-            data: JSON.stringify({"user_id": userId}),
+            body: JSON.stringify({"user_id": userId}),
             headers: {"Content-Type": "application/json"}
         }
         const response = await fetch("http://localhost:5000/api/users_trip", configs);
@@ -23,20 +23,26 @@ function TripsPage() {
 
 
     return (
-        <AuthUserContext.Consumer> 
-            {authUser => (
-            <div>
-                <label for="input">Starting Address:</label>
-                <input type="text" id="input" name="input"></input><br></br>
-                <label for="input">Trip Destination:</label>
-                <input type="text" id="input" name="input"></input><br></br>
-                <button onClick={() => setTrips(getTrips)}>Enter</button>
-            <section><p>MAP</p></section><bk/>
+        
+            
+        <div>
+            <label for="input">Starting Address:</label>
+            <input type="text" id="input" name="input"></input><br></br>
+            <label for="input">Trip Destination:</label>
+            <input type="text" id="input" name="input"></input><br></br>
+            {trips.map(trip => {
+                <div>
+                    <p>{trip.destination_add}</p>
+                    <p>{trip.start_add}</p>
+                    <p>{trip.distance}</p>
+                    <p>{trip.weather}</p>
+                    <p>{trip.vehicle_id}</p>
+                    <p>{trip.user_id}</p>
+                </div>
+            })}
 
-            </div>
-            )}
-
-        </AuthUserContext.Consumer>
+        </div>
+            
     );
 
 

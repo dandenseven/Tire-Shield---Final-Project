@@ -1,44 +1,51 @@
-import React, { useContext, useState, useEffect} from 'react';
-import { FirebaseContext } from '../Firebase';
-import { AuthUserContext, withAuthorization } from '../Session';
+// import React, { useContext, useState, useEffect} from 'react';
+// import { FirebaseContext } from '../Firebase';
+// import { AuthUserContext, withAuthorization } from '../Session';
+
+// function WeatherPage() {
+//     const[version, setVersion] = useState("");
+//     const[transactionid, setTransactionId] = useState("");
+//     const[expire_time_gmt, setExpireTimeGmt] = useState("");
+    
 
 
-function WeatherPage() {
-    const[weather, setWeather] = useState();
+//     // need user id
+//     const userId = useContext(FirebaseContext).uid
+    
+//     async function addTrip() {
+//         const data = JSON.stringify({
+//             charactistic: integer, 
+//             class: string,
+//             expire_time_gmt: integer,
+//             event_end: integer,
+            
+//         })
+//         const configs = {
+//             method: 'post',
+//             data: data,
+//             headers: {"Content-Type": "application/json"}
+//         }
+//         const response = await fetch("http://localhost:5000/api/trip_add", configs);
+//         const success = await response.json();
+//         setSuccess(success.status);
 
-    const userId = useContext(FirebaseContext).uid
+//     }
 
-    async function getWeather() {
-        const configs = {
-            method: 'post',
-            data: JSON.stringify({"user_id": userId}),
-            headers: {"Content-Type": "application/json"}
-        }
-        const response = await fetch("http://localhost:5000/api/users_weather", configs);
-        const trips = await response.json();
-        console.log(weather)
-        setWeather(weather);
-    }
-
-    useEffect (() => getWeather(), []);
+//     return (
+        
+//         <div>
+            
+//         </div>
 
 
-    return (
-        <AuthUserContext.Consumer>
-            {authUser => (
-            <div>
-                <p>LOCAL WEATHER</p>
-                <p>10 DAY FORCAST</p>
-                <button >Working Progress</button>
-                
-            </div>
-        )}
+//     );
 
-    </AuthUserContext.Consumer>
-    );
+// }
 
-}
 
-const condition = authUser => !!authUser;
+// const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(WeatherPage);
+
+// export default withAuthorization(condition)(WeatherPage);
+
+

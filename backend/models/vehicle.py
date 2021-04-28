@@ -4,29 +4,30 @@ class Vehicle:
 
     vehicle_ref = "" # we could set this later at runtime
     
-    def __init__(self, type_vehicle, make, model, total_miles, tire_miles, 
-                    tire_purchase_date, rotation_miles, user_id, vehicle_id):
-        self.type = type_vehicle
+    def __init__(self, make, model, total_miles, tire_miles, 
+                    tire_purchase_date, rotation_miles, color, user_id, vehicle_id):
         self.make = make
         self.model = model
         self.total_miles = total_miles
         self.tire_miles = tire_miles
         self.tire_purchase_date = tire_purchase_date
         self.rotation_miles = rotation_miles
+        self.color = color
         self.user_id = user_id
         self.vehicle_id = vehicle_id
+        
 
 
     def to_json(self):
-        return {"type_vehicle": self.type,
-                "make": self.make, 
+        return {"make": self.make, 
                 "model": self.model, 
                 "total_miles": self.total_miles, 
                 "tire_miles": self.tire_miles,
                 "tire_purchase_date": self.tire_purchase_date,
                 "rotation_miles": self.rotation_miles,
-                "user_id": self.user_id, 
-                "vehicle_id": self.vehicle_id # may also not exist yet for new vehicle
+                "color": self.color,
+                "user_id": self.user_id,
+                "vehicle_id": self.vehicle_id
                }
 
     def insert(self):
@@ -39,7 +40,7 @@ class Vehicle:
         self.vehicle_ref.document(self.vehicle_id).delete(self.to_json())
 
     @classmethod
-    def vehicles_for_users(cls, user_id):
+    def vehicles_for_user(cls, user_id):
         return cls.vehicle_ref.where("user_id", "==", user_id).get()
 
 

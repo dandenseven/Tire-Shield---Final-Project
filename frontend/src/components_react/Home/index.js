@@ -4,26 +4,15 @@ import { FirebaseContext } from '../Firebase';
 import { withAuthorization } from '../Session';
 
 function HomePage() {
-    const[weather, setWeather] = useState();
-    const[vehicles, setVehicles] = useState();
+    const[vehicles, setVehicles] = useState([]);
 
-    const userId = useContext(FirebaseContext).uid
-
-    // async function getWeather() {
-    //     const configs = {
-    //         method: 'post',
-    //         data: JSON.stringify({"id": id}),
-    //         headers: {"Content-Type": "application/json"}
-    //     }
-    //     const response = await fetch("http://localhost:5000/weather_read");
-    //     const weather = await response.json();
-    //     setWeather(weather);
-    // }
+    const userId = useContext(FirebaseContext).auth.currentUser.uid
 
     async function getVehicles() {
+        console.log(userId)
         const configs = {
             method: 'post',
-            data: JSON.stringify({"user_id": userId}),
+            body: JSON.stringify({"user_id": userId}),
             headers: {"Content-Type": "application/json"}
         }
         const response = await fetch("http://localhost:5000/api/users_vehicle", configs);
@@ -39,12 +28,25 @@ function HomePage() {
         <div>
             <h1>Home Page</h1>
             <p>The Home Page is accessible by every signed in user.</p>
-            {/* <button onClick ={getVehicles}></button> */}
-            <button onClick={() => setVehicles(vehicles)}>{getVehicles}</button>
+            {vehicles.map(vehicle => {
+                <div>
+                    <p>{vehicle.make}</p>
+                    <p>{vehicle.model}</p>
+                    <p>{vehicle.total_miles}</p>
+                    <p>{vehicle.tire_miles}</p>
+                    <p>{vehicle.tire_purchase_date}</p>
+                    <p>{vehicle.rotation_miles}</p>
+                    <p>{vehicle.color}</p>
+                    <p>{vehicle.user_id}</p>
+                </div>
+            })}
         </div>
-        );
+    );
+
+
 }
-    
+
+
 const condition = authUser => !!authUser;
 
 export default withAuthorization(condition)(HomePage);

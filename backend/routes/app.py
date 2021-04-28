@@ -137,17 +137,17 @@ def vehicle_create():
     """
     try:
        
-        type_vehicle = request.json.get("type")
         make = request.json.get("make")
         model = request.json.get("model")
         total_miles = request.json.get("total_miles")
         tire_miles = request.json.get("tire_miles")
         tire_purchase_date = request.json.get("tire_purchase_date")
         rotation_miles = request.json.get("rotation_miles")
+        color = request.json.get("color")
         user_id = request.json.get("user_id")
         vehicle_id = request.json.get("vehicle_id")
-        new_vehicle = Vehicle(type_vehicle, make, model, total_miles, tire_miles, 
-                                tire_purchase_date, rotation_miles, user_id, vehicle_id)
+        new_vehicle = Vehicle(make, model, total_miles, tire_miles, 
+                                tire_purchase_date, rotation_miles, color, user_id, vehicle_id)
         new_vehicle.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -238,20 +238,24 @@ def vehicle_read():
         todo : Return document that matches query ID.
         all_todos : Return all documents.
     """
-    try:
-        user_id = request.json.get("user_id")
-        if user_id:
-            
-            vehicles = Vehicle.vehicles_for_user(user_id)
-            print(vehicles)
-            return jsonify(vehicles.to_dict()), 200
-        else:
-            # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
-            # return jsonify(all_vehicle), 200
-            return jsonify({"vehicles": []})
-    except Exception as e:
-        return f"An Error Occured: {e}"
-    return jsonify({"vehicles": []})
+    # try:
+    
+    data = request.get_json()
+    print(data)
+    user_id = request.json["user_id"]
+    print(user_id)
+    if user_id:
+        
+        vehicles = Vehicle.vehicles_for_user(user_id)
+        print(vehicles)
+        return jsonify(vehicles.to_dict()), 200
+    else:
+        # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
+        # return jsonify(all_vehicle), 200
+        return jsonify({"vehicles": []})
+    # except Exception as e:
+    #     return f"An Error Occured: {e}"
+    # return jsonify({"vehicles": []})
 
 # firebase dqta is organized like:
 # "document_id" : {"key1": value1, "key2": 14}
@@ -263,18 +267,21 @@ def trip_read():
         todo : Return document that matches query ID.
         all_todos : Return all documents.
     """
-    try:
-        user_id = request.json.get(["user_id"])
-        if user_id:
-            trips = Trip.trips_for_user(user_id)
-            print(trips)
-            return jsonify(trips.to_dict()), 200
-        else:
-            # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
-            # return jsonify(all_trip), 200
-            pass
-    except Exception as e:
-        return f"An Error Occured: {e}"
+    # try:
+    data = request.get_json()
+    print(data)
+    user_id = request.json.get("user_id")
+    print(user_id)
+    if user_id:
+        trips = Trip.trips_for_user(user_id)
+        print(trips)
+        return jsonify(trips.to_dict()), 200
+    else:
+        # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
+        # return jsonify(all_trip), 200
+        return jsonify({"trips": []})
+    # except Exception as e:
+    # return f"An Error Occured: {e}"
 
 # update
 # curl localhost:8080/update -X POST -H "Content-Type: application/json" -d '{"id": "1", "title": "new lists"}'
@@ -285,12 +292,9 @@ def trip_read():
 def weather_read():
     try:
 
-        users_id = request.json.get("users_id")
-            return jsonify(trips.to_dict()), 200
-        else:
-            # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
-            # return jsonify(all_trip), 200
-            pass
+        user_id = request.json.get("user_id")
+        return jsonify({"success": True}), 200
+        pass
     except Exception as e:
         return f"An Error Occured: {e}"
             
@@ -320,7 +324,7 @@ def update():
 
 
 @app.route("/api/update_vehicle", methods=['POST', 'PUT'])
-def vehicle_update():
+def vehicle_update(id):
     """
         update() : Update document in Firestore collection with request body.
         Ensure you pass a custom ID as part of json body in post request,
@@ -336,7 +340,7 @@ def vehicle_update():
         return f"An Error Occured: {e}"
 
 @app.route("/api/udate_trip", methods=['POST', 'PUT'])
-def trip_update():
+def trip_update(id):
     """
         update() : Update document in Firestore collection with request body.
         Ensure you pass a custom ID as part of json body in post request,
