@@ -8,3 +8,5 @@ export const TIREMAIN = '/Tiremain';
 export const PASSWORD_FORGET = '/PasswordForget';
 export const TRIPS = '/Trips';
 export const WEATHER = '/Weather';
+export const ADDTRIP = '/AddTrip';
+export const ADDVEHICLE = '/AddVehicle';

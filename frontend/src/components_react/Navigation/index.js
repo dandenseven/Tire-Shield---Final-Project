@@ -38,6 +38,12 @@ const NavigationAuth = () => (
       </li>
         <SignOutButton />
       </li>
+      <li>
+        <Link to={ROUTES.ADDTRIP}>AddTrip</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.ADDVEHICLE}>AddVehicle</Link>
+      </li>
     </ul>
 );
 

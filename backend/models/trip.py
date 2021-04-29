@@ -7,18 +7,18 @@ class Trip:
     trip_ref = ""
     
     
-    def __init__(self, destination_add, start_add, distance,
+    def __init__(self, start_add, destination_add, distance,
                     weather, vehicle_id, user_id):
-        self.destination_add  = destination_add
-        self.start_add = start_add
+        self.start_add  = start_add
+        self.destination_add = destination_add
         self.distance = distance
         self.weather = weather
         self.vehicle_id = vehicle_id 
         self.user_id = user_id
 
     def to_json(self):
-        return {"destination_add": self.destination_add, 
-                "start_add": self.start_add,
+        return {"start_add": self.start_add, 
+                "destination_add": self.destination_add,
                 "distance": self.distance,
                 "weather": self.weather,
                 "vehicle_id": self.vehicle_id,

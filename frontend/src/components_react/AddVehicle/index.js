@@ -9,13 +9,14 @@ function AddVehicle() {
     const[tire_miles, setTireMiles] = useState("");
     const[color, setColor] = useState("");
     const[vehicle_id, setVehicleId] = useState("");
+    const[sucess, setSuccess] = useState(true);
 
 
     // need user id
     const userId = useContext(FirebaseContext).uid
     
     async function addVehicle() {
-        const data = JSON.stringify({
+        const body = JSON.stringify({
             make: make,
             model: model,
             total_miles: total_miles,
@@ -25,7 +26,7 @@ function AddVehicle() {
         })
         const configs = {
             method: 'post',
-            data: data,
+            body: body,
             headers: {"Content-Type": "application/json"}
         }
         const response = await fetch("http://localhost:5000/api/vehicle_add", configs);
@@ -63,6 +64,14 @@ function AddVehicle() {
             placeholder="Color" 
             onChange={e => setColor(e.target.value)}
             />
+            <input 
+            type="text" 
+            placeholder="Vehicle Nickname" 
+            onChange={e => setVehicleId(e.target.value)}
+            />
+            <button type="button" onClick={addVehicle}>
+                submit
+            </button>
         </div>
 
 

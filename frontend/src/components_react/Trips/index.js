@@ -30,6 +30,7 @@ function TripsPage() {
             <input type="text" id="input" name="input"></input><br></br>
             <label for="input">Trip Destination:</label>
             <input type="text" id="input" name="input"></input><br></br>
+
             {trips.map(trip => {
                 <div>
                     <p>{trip.destination_add}</p>

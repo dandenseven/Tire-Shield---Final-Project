@@ -12,6 +12,8 @@ import AdminPage from '../Admin';
 import TireMainPage from '../Tiremain';
 import TripsPage from '../Trips';
 import WeatherPage from '../Weather';
+import AddTrip from '../AddTrip';
+import AddVehicle from '../AddVehicle';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -34,6 +36,8 @@ const App = () => (
             <Route path={ROUTES.TIREMAIN} component={TireMainPage} />
             <Route path={ROUTES.TRIPS} component={TripsPage} />
             <Route path={ROUTES.WEATHER} component={WeatherPage} />
+            <Route path={ROUTES.ADDTRIP} component={AddTrip} />
+            <Route path={ROUTES.ADDVEHICLE} component={AddVehicle} />
         </div>
     </Router>
             

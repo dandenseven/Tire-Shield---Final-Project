@@ -187,8 +187,8 @@ def trip_create():
     """
     try:
         
-        destination_add  = request.json.get("destination_add")
-        start_add = request.json.get("start_add")
+        start_add  = request.json.get("start_add")
+        destination_add= request.json.get("destination_add")
         distance = request.json.get("distance")
         weather = request.json.get("weather")
         vehicle_id =request.json.get("vehicle_id")
