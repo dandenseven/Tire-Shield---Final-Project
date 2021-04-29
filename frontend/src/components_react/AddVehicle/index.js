@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 
@@ -9,11 +9,12 @@ function AddVehicle() {
     const[tire_miles, setTireMiles] = useState("");
     const[color, setColor] = useState("");
     const[vehicle_id, setVehicleId] = useState("");
+    
     const[sucess, setSuccess] = useState(true);
 
 
     // need user id
-    const userId = useContext(FirebaseContext).uid
+    const userId = useContext(FirebaseContext).auth.currentUser.uid
     
     async function addVehicle() {
         const body = JSON.stringify({

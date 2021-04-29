@@ -44,6 +44,9 @@ const NavigationAuth = () => (
       <li>
         <Link to={ROUTES.ADDVEHICLE}>AddVehicle</Link>
       </li>
+      <li>
+        <Link to={ROUTES.ADDUSER}>AddUser</Link>
+      </li>
     </ul>
 );
 
