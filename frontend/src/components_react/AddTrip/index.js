@@ -17,8 +17,8 @@ function AddTrip() {
     
     async function addTrip() {
         const body = JSON.stringify({
-            destination_add: destination, 
-            start_add: start,
+            start_add: start, 
+            destination_add: destination,
             distance: distance,
             weather: weather,
             vehicle_id: vehicle_id,

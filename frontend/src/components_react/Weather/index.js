@@ -25,9 +25,9 @@
 //             data: data,
 //             headers: {"Content-Type": "application/json"}
 //         }
-//         const response = await fetch("http://localhost:5000/api/trip_add", configs);
+//         const response = await fetch(`http://api.weather.com/v2/turbo/vt1observation`
 //         const success = await response.json();
-//         setSuccess(success.status);
+//         setSuccess(success.status)
 
 //     }
 

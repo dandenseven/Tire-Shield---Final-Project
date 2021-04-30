@@ -9,7 +9,7 @@ function AddVehicle() {
     const[tire_miles, setTireMiles] = useState("");
     const[color, setColor] = useState("");
     const[vehicle_id, setVehicleId] = useState("");
-    
+
     const[sucess, setSuccess] = useState(true);
 
 
@@ -23,8 +23,10 @@ function AddVehicle() {
             total_miles: total_miles,
             tire_miles: tire_miles,
             user_id: userId,
-            color: color 
+            color: color
+    
         })
+        console.log(body)
         const configs = {
             method: 'post',
             body: body,

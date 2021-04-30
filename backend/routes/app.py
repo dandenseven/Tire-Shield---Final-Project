@@ -193,8 +193,8 @@ def trip_create():
         weather = request.json.get("weather")
         vehicle_id =request.json.get("vehicle_id")
         user_id = request.json.get("user_id")
-        new_trip = Trip(destination_add, start_add, distance,
-                        weather, user_id, vehicle_id,)
+        new_trip = Trip(start_add, destination_add, distance,
+                        weather, vehicle_id, user_id)
         new_trip.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -242,13 +242,15 @@ def vehicle_read():
     
     data = request.get_json()
     print(data)
-    user_id = request.json["user_id"]
+    user_id = request.json.get("user_id")
     print(user_id)
     if user_id:
         
         vehicles = Vehicle.vehicles_for_user(user_id)
         print(vehicles)
-        return jsonify(vehicles.to_dict()), 200
+        test = [vehicle.to_dict() for vehicle in vehicles]
+        print(test)
+        return jsonify(test), 200
     else:
         # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
         # return jsonify(all_vehicle), 200
@@ -275,7 +277,9 @@ def trip_read():
     if user_id:
         trips = Trip.trips_for_user(user_id)
         print(trips)
-        return jsonify(trips.to_dict()), 200
+        test = [trip.to_dict() for trip in trips]
+        print(test)
+        return jsonify(test), 200
     else:
         # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
         # return jsonify(all_trip), 200
