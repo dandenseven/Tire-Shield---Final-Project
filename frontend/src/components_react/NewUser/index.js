@@ -3,7 +3,6 @@ import React, { useContext, useState, useEffect } from 'react';
 
 
 function Newuser() {
-    const[newUser, setNewUser] = useState("");
 
     async function getNewUser() {
         const configs = {
@@ -22,5 +21,8 @@ function Newuser() {
         setNewUser(userNew);
     }
 
-        return jsonify({"username": username, "email": email, "user_id": user_id})
+        return jsonify({"username": username, 
+        "email": email, "user_id": user_id
+        })
 }
+
