@@ -31,7 +31,8 @@ class Vehicle:
                }
 
     def insert(self):
-        self.vehicle_ref.document().set(self.to_json())
+        self.vehicle_ref.document_id().set(self.to_json())
+        return self.document_id.create("vehicle_id", "==", vehicle_id).get()
 
     def update(self):
         self.vehicle_ref.document(self.vehicle_id).set(self.to_json())

@@ -81,8 +81,20 @@ def login():
 # update
 # curl localhost:8080/update -X POST -H "Content-Type: application/json" -d '{"id": "1", "title": "new lists"}'
 
+@app.route("/https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={time}&lang={lang}&appid={6693af864d042d45210a62d91db9b718}", methods=["POST"])
+def weather_read():
+    try:
+        lat = request.json.get("lat")
+        lon = request.json.get("lon")
+        timezone = request.json.get("timezone")
+        current = request.json.get("curent")
+        user_weather =(lat, lon, timezone, current)
+        print(user_weather)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
 
-
+        
 @app.route("/api/users_add", methods=["POST"])
 def users_create():
     """
@@ -191,10 +203,12 @@ def trip_create():
         destination_add= request.json.get("destination_add")
         distance = request.json.get("distance")
         weather = request.json.get("weather")
+        start_date = request.json.get("start_date")
+        end_date = request.json.get("end_date")
         vehicle_id =request.json.get("vehicle_id")
         user_id = request.json.get("user_id")
         new_trip = Trip(start_add, destination_add, distance,
-                        weather, vehicle_id, user_id)
+                        weather, start_date, end_date, vehicle_id, user_id)
         new_trip.insert()
         # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -292,15 +306,15 @@ def trip_read():
 # update
 # curl localhost:5000/api/update_users -X POST -H "Content-Type: application/json" -d '{"email": "mmynew@email.com"}'
 
-@app.route("/api/users_weather", methods=["GET"])
-def weather_read():
-    try:
+# @app.route("/api/users_weather", methods=["GET"])
+# def weather_read():
+#     try:
 
-        user_id = request.json.get("user_id")
-        return jsonify({"success": True}), 200
-        pass
-    except Exception as e:
-        return f"An Error Occured: {e}"
+#         user_id = request.json.get("user_id")
+#         return jsonify({"success": True}), 200
+#         pass
+#     except Exception as e:
+#         return f"An Error Occured: {e}"
             
 
 

@@ -8,11 +8,13 @@ class Trip:
     
     
     def __init__(self, start_add, destination_add, distance,
-                    weather, vehicle_id, user_id):
+                    weather, start_date, end_date, vehicle_id, user_id):
         self.start_add  = start_add
         self.destination_add = destination_add
         self.distance = distance
         self.weather = weather
+        self.start_date = start_date
+        self.end_date = end_date
         self.vehicle_id = vehicle_id 
         self.user_id = user_id
 
@@ -21,6 +23,8 @@ class Trip:
                 "destination_add": self.destination_add,
                 "distance": self.distance,
                 "weather": self.weather,
+                "start_date": self.start_date,
+                "end_date": self.end_date,
                 "vehicle_id": self.vehicle_id,
                 "user_id": self.user_id
                 }
