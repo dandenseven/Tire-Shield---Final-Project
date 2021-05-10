@@ -13,6 +13,23 @@ const SignUpPage = () => (
         <SignUpForm />
     </div>
     );
+    
+async function getNewUser(username, email, user_id) {
+    const configs = {
+        method: 'post',
+        body: JSON.stringify({
+        "username": username,
+        "email": email,
+        "user_id": user_id
+        }),
+        headers: {"Content_Type": "application/json"}
+        
+    }
+    const response = await fetch("http://localhost:5000/api/users_add", configs)
+    const userNew = await response.json();
+    console.log(userNew)
+    
+}
 
 const INITIAL_STATE = {
     username: '',
@@ -35,14 +52,30 @@ class SignUpFormBase extends Component {
         this.props.firebase
             .doCreateUserWithEmailAndPassword(email, passwordOne)
             .then(auth => {
+            console.log(auth)
+                
+            
+                // return jsonify({"username": username, 
+                //     "email": email, "user_id": user_id
+
+                //     })
+                
                 // Create a user in your Firebase realtime database
+    
                 return this.props.firebase
-                    .user(auth.currentUser.uid)
+                    .db.collection("users").doc(auth.user.uid)
+                    // .user(auth.currentUser.uid)
                     // .user(authUser.user.uid)
                     .set({
-                        username,
-                        email,
+                        username: username,
+                        email: email,
+                        last_login: 1
+
                     });
+
+                // return getNewUser(username, email, auth.currentUser.uid);
+
+
                 })
                 .then(() => {
                     this.setState({...INITIAL_STATE });
