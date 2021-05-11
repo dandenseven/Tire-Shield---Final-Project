@@ -19,7 +19,7 @@ function WeatherPage() {
         //     headers: {"Content-Type": "application/json"}
     
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${lat}&lon=${lon}&dt=${time}&lang=en&appid=${6693af864d042d45210a62d91db9b718}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=20215101619&lang=en&appid=6693af864d042d45210a62d91db9b718`);
         const userWeather = await response.json();
         console.log(userWeather)
         setWeather(userWeather);
