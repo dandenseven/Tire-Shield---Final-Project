@@ -26,14 +26,20 @@ function TripsPage() {
         
             
         <div>
+        
             {/* <label for="input">Starting Address:</label>
             <input type="text" id="input" name="input"></input>
             <label for="input">Trip Destination:</label>
             <input type="text" id="input" name="input"></input> */}
             {/* {trips} */}
+            <p>inputs for trip start destination and end destination</p>
+                <p>Trip history</p>
+                    <p>Map</p>
+
+
+
             {trips.map(trip => 
                 <div>
-                    <p>this a p</p>
                     <p>{trip.destination_add}</p>
                     <p>{trip.start_add}</p>
                     <p>{trip.distance}</p>

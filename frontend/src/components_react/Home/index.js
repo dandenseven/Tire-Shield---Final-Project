@@ -23,12 +23,27 @@ function HomePage() {
 
     useEffect (() => getVehicles(), []);
 
+
+
+    
     return (
         
         <div>
             <h1>Home Page</h1>
-            <p>The Home Page is accessible by every signed in user.</p>
-            {vehicles.map(vehicle => {
+
+                <p>The Home Page is accessible by every signed in user.</p>
+                    <p>show last vehicle used</p>
+                        <p>show most recent trip</p>
+                            <p>show current miles</p>
+                                <p>show weather snapshot</p>
+                                    <p> show last login</p>
+                                        <p>show tire status</p>
+                                            <p>show tire rotation expected date</p>
+                                                <p>show oil change expected date</p>
+
+        
+            
+            {vehicles.map(vehicle => 
                 <div>
                     <p>{vehicle.make}</p>
                     <p>{vehicle.model}</p>
@@ -38,10 +53,10 @@ function HomePage() {
                     <p>{vehicle.rotation_miles}</p>
                     <p>{vehicle.color}</p>
                     <p>{vehicle.user_id}</p>
-                </div>
-            })}
+                </div>)}
         </div>
     );
+    
 
 
 }

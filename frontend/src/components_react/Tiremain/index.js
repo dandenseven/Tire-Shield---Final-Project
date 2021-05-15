@@ -35,6 +35,10 @@ function TireMainPage() {
             <h2>Tire Milage</h2>
             <h2>Current Tire Miles</h2>
             <h2>Tire Warning Message!</h2>
+                <p>expected tire rotation miles</p>
+                    <p>expected oil change date</p>
+                    
+
             {vehicles.map(vehicle => 
                 <div>
                     <p>{vehicle.make}</p>
