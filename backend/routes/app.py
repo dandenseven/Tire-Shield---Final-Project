@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, json, request, jsonify
 from firebase_admin import credentials, firestore, initialize_app
 from models.vehicle import Vehicle
 from models.trip import Trip
@@ -20,7 +20,6 @@ CORS(app)
 # Users.users_ref = db.collection('users')
 # Vehicle.vehicle_ref = db.collection('vehicle')
 # Trip.trip_ref = db.collection('trip')
-
 
 
 # curl localhost:5000/api/login -X POST -H "Content-Type: application/json" -d '{"user_id": 401, "email": "my@email.com", "password": "mustang"}'
@@ -49,6 +48,21 @@ def login():
     except Exception as e:
             return f"An Error Occured: {e}"
 
+
+@app.route("/api/home", methods=["POST"])
+def home_login():
+    try:
+        username = request.json.get("username")
+        email = request.json.get("email")
+        last_login = request.json.get("last_login")
+        add_user = (username, email, last_login)
+        user_id = Users.signup(add_user)
+        getNewUser = user_id.update()
+        
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+    
 
 # create
 # curl localhost:8080/add -X POST -H "Content-Type: application/json" -d '{"id": "1", "destination": "NYC", "vehicle": "toyota"}'
@@ -81,20 +95,7 @@ def login():
 # update
 # curl localhost:8080/update -X POST -H "Content-Type: application/json" -d '{"id": "1", "title": "new lists"}'
 
-@app.route("/https://api.openweathermap.org/data/2.5/onecall/timemachine?lat={lat}&lon={lon}&dt={time}&lang={lang}&appid={6693af864d042d45210a62d91db9b718}", methods=["POST"])
-def weather_read():
-    try:
-        lat = request.json.get("lat")
-        lon = request.json.get("lon")
-        timezone = request.json.get("timezone")
-        current = request.json.get("curent")
-        user_weather =(lat, lon, timezone, current)
-        print(user_weather)
-        return jsonify({"success": True}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
 
-        
 @app.route("/api/users_add", methods=["POST"])
 def users_create():
     """
@@ -148,7 +149,7 @@ def vehicle_create():
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
     try:
-       
+
         make = request.json.get("make")
         model = request.json.get("model")
         total_miles = request.json.get("total_miles")

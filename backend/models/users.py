@@ -1,12 +1,11 @@
 from firebase_admin import credentials, firestore, initialize_app
 import datetime
-import React from 'react'
+
 
 class Users:
 
-
+                                                    
     users_ref = ""
-
 
     def __init__(self, username="", email="", first_name="", last_name="",
                     home_lat=None, home_long=None, last_login=float, user_id=None):
@@ -50,9 +49,9 @@ class Users:
 
                     
                 #update user last login to be the current time
-    self.user_ref.documet(self.user_id).set({"last_login": current_time})
+        self.users_ref.documet(self.user_id).set({"last_login": current_time})
                 # return trips and vehicles to react
-    return {"trips": trips, "vehicles": vehicles}
+        return {"trips": trips, "vehicles": vehicles}
                     
                         
             
