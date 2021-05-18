@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
+import '../../Sass/Components/Rcorners.scss';
+
 
 function TireMainPage() {
     const[vehicles, setVehicles] = useState([]);
@@ -32,23 +34,41 @@ function TireMainPage() {
     return (
         
         <div>
-            <h2>Tire Milage</h2>
-            <h2>Current Tire Miles</h2>
-            <h2>Tire Warning Message!</h2>
-                <p>expected tire rotation miles</p>
-                    <p>expected oil change date</p>
-                    
+            <h2>My Vehicles</h2>
+            <h3>Tire Warning Message!</h3>
+                <p>expected oil change date</p>
+                    <p>expected tire change date</p>
+
 
             {vehicles.map(vehicle => 
                 <div>
-                    <p>{vehicle.make}</p>
-                    <p>{vehicle.model}</p>
-                    <p>{vehicle.total_miles}</p>
-                    <p>{vehicle.tire_miles}</p>
-                    <p>{vehicle.tire_purchase_date}</p>
-                    <p>{vehicle.rotation_miles}</p>
-                    <p>{vehicle.color}</p>
-                    <p>{vehicle.user_id}</p>
+                    <table>
+                        <p id={"rcorners2"}><tr>
+                            <th>{vehicle.make}</th><bk></bk>
+                            <th>{vehicle.model}</th>
+                            </tr><bk></bk>
+                            <tr>
+                                <th>Current tire miles:</th>
+                                <td>{vehicle.total_miles}</td>
+                                </tr><bk></bk>
+                            <tr>
+                                <th>Tire miles:</th> 
+                                <td>{vehicle.tire_miles}</td>
+                                </tr><bk></bk>
+                            <tr>
+                                <th>Tire purchased date:</th> 
+                                <td>{vehicle.tire_purchase_date}</td>
+                            </tr><bk></bk>
+                            <tr>
+                                <th>Miles until rotation:</th> 
+                                <td>{vehicle.rotation_miles}</td>
+                            </tr><bk></bk>
+                            <tr>
+                                <th>Color:</th> 
+                                <td>{vehicle.color}</td>
+                            </tr><bk></bk>
+                            {vehicle.user_id}</p>
+                    </table>
                 </div>)}
 
         </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect} from 'react';
 import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
+import '../../Sass/Components/Rcorners.scss';
 
 function TripsPage() { 
     const[trips, setTrips] = useState([]);
@@ -40,12 +41,22 @@ function TripsPage() {
 
             {trips.map(trip => 
                 <div>
-                    <p>{trip.destination_add}</p>
-                    <p>{trip.start_add}</p>
-                    <p>{trip.distance}</p>
-                    <p>{trip.weather}</p>
-                    <p>{trip.vehicle_id}</p>
-                    <p>{trip.user_id}</p>
+                    <table>
+                        <p id={"rcorners1"}><tr>
+                            <th>{trip.destination_add}</th><bk></bk>
+                            </tr><bk></bk>
+                            <tr>
+                                <td>{trip.start_add}</td>
+                            </tr><bk></bk>
+                            <tr>
+                                <td>{trip.distance}</td>
+                            </tr><bk></bk>
+                            <tr>
+                                <td>{trip.weather}</td>
+                            </tr><bk></bk>
+                            {trip.vehicle_id}
+                            {trip.user_id}</p>
+                    </table>
                 </div>)}
 
         </div>

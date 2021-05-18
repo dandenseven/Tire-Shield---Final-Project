@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import '../../Sass/App.scss';
 // import { withFirebase } from '../Firebase';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
@@ -15,6 +16,7 @@ import WeatherPage from '../Weather';
 import AddTrip from '../AddTrip';
 import AddVehicle from '../AddVehicle';
 import AddUser from '../AddUser';
+
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';

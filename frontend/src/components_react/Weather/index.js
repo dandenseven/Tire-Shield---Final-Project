@@ -120,7 +120,7 @@ function WeatherPage() {
 
         return (
             <div>
-                <h2>Current Weather</h2>
+                <h1>Current Weather</h1>
                 {/* <button onClick={() => console.log(currentLocation)}>Show coordinates</button> */}
                 <p>Local Weather Forecast</p>
                     <p> 7 seven day weather forcast</p>
