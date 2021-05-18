@@ -57,7 +57,7 @@ def home_login():
         last_login = request.json.get("last_login")
         add_user = (username, email, last_login)
         user_id = Users.signup(add_user)
-        getNewUser = user_id.update()
+        get_newuser = user_id.update()
         
         return jsonify({"success": True}), 200
     except Exception as e:

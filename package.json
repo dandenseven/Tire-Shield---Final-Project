@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "create-react-app": "^4.0.3",
+    "for": "^0.1.0",
     "recompose": "^0.30.0"
   }
 }
