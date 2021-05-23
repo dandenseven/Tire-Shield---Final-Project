@@ -10,5 +10,5 @@ export const TRIPS = '/Trips';
 export const WEATHER = '/Weather';
 export const ADDTRIP = '/AddTrip';
 export const ADDVEHICLE = '/AddVehicle';
-export const ADDUSER = '/AddUser';
+// export const ADDUSER = '/AddUser';
 

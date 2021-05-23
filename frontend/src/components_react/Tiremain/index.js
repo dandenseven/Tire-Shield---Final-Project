@@ -42,33 +42,42 @@ function TireMainPage() {
 
             {vehicles.map(vehicle => 
                 <div>
-                    <table>
-                        <p id={"rcorners2"}><tr>
-                            <th>{vehicle.make}</th><bk></bk>
-                            <th>{vehicle.model}</th>
-                            </tr><bk></bk>
-                            <tr>
-                                <th>Current tire miles:</th>
-                                <td>{vehicle.total_miles}</td>
+                    <div className="grid-container">
+                        <table>
+                            <p id={"rcorners2"}><tr>
+                                <th>Make:</th>
+                                <th>{vehicle[1].make}</th>
                                 </tr><bk></bk>
-                            <tr>
-                                <th>Tire miles:</th> 
-                                <td>{vehicle.tire_miles}</td>
+                                <tr>
+                                <th>Model:</th>
+                                <th>{vehicle[1].model}</th>
                                 </tr><bk></bk>
-                            <tr>
-                                <th>Tire purchased date:</th> 
-                                <td>{vehicle.tire_purchase_date}</td>
-                            </tr><bk></bk>
-                            <tr>
-                                <th>Miles until rotation:</th> 
-                                <td>{vehicle.rotation_miles}</td>
-                            </tr><bk></bk>
-                            <tr>
-                                <th>Color:</th> 
-                                <td>{vehicle.color}</td>
-                            </tr><bk></bk>
-                            {vehicle.user_id}</p>
-                    </table>
+                                <tr>
+                                    <th>Current tire miles:</th>
+                                    <td>{vehicle[1].total_miles}</td>
+                                    </tr><bk></bk>
+                                <tr>
+                                    <th>Tire miles:</th> 
+                                    <td>{vehicle[1].tire_miles}</td>
+                                    </tr><bk></bk>
+                                <tr>
+                                    <th>Tire purchased date:</th> 
+                                    <td>{vehicle[1].tire_purchase_date}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Miles until rotation:</th> 
+                                    <td>{vehicle[1].rotation_miles}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Color:</th> 
+                                    <td>{vehicle[1].color}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <td>{vehicle.user_id}</td> 
+                                </tr>
+                                </p>
+                        </table>
+                    </div>
                 </div>)}
 
         </div>

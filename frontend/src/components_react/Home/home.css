@@ -1,3 +1,74 @@
 .pageheader {
     color: rgb(247, 162, 4);
 }
+
+
+#rcorners3 {
+    border-radius:  25px;
+    border: 2px solid rgb(91, 233, 9);
+    padding: 20px;
+    width: 340px;
+    height: auto;
+
+}
+
+#rcorners4 {
+    border-radius:  25px;
+    border: 2px solid rgb(6, 166, 240);
+    padding: 20px;
+    width: 400px;
+    height: auto;
+    
+
+}
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+}
+.weatherforcast {
+    display: grid;
+    align-content: center;
+    column-span: all;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-gap: 16px;
+    margin: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+
+.grid-container {
+    display: block;
+    grid-auto-columns: 20px;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.weatherimg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 80px;
+    align-content: center;
+    
+}

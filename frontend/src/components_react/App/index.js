@@ -15,7 +15,7 @@ import TripsPage from '../Trips';
 import WeatherPage from '../Weather';
 import AddTrip from '../AddTrip';
 import AddVehicle from '../AddVehicle';
-import AddUser from '../AddUser';
+// import AddUser from '../AddUser';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -41,7 +41,7 @@ const App = () => (
             <Route path={ROUTES.WEATHER} component={WeatherPage} />
             <Route path={ROUTES.ADDTRIP} component={AddTrip} />
             <Route path={ROUTES.ADDVEHICLE} component={AddVehicle} />
-            <Route path={ROUTES.ADDUSER} component={AddUser} />
+            {/* <Route path={ROUTES.ADDUSER} component={AddUser} /> */}
         </div>
     </Router>
             

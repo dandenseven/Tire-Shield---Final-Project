@@ -15,7 +15,7 @@ function AddUser() {
 
     const userId = useContext(FirebaseContext).auth.currentUser.uid
 
-    async function addUser(){
+    async function addUser() {
         const body = JSON.stringify({
             username: username,
             email: email,

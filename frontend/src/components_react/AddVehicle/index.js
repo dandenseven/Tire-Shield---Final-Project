@@ -7,6 +7,8 @@ function AddVehicle() {
     const[model, setModel] = useState("");
     const[total_miles, setMiles] = useState("");
     const[tire_miles, setTireMiles] = useState("");
+    const[tire_purchase_date, setTirePurchaseDate] = useState("");
+    const[rotation_miles, setRotationMiles] = useState("")
     const[color, setColor] = useState("");
     const[vehicle_id, setVehicleId] = useState("");
 
@@ -22,8 +24,12 @@ function AddVehicle() {
             model: model,
             total_miles: total_miles,
             tire_miles: tire_miles,
+            tire_purchase_date: new Date(tire_purchase_date).getTime(),
+            rotation_miles: rotation_miles,
+            color: color,
             user_id: userId,
-            color: color
+            vehicle_id: vehicle_id
+            
     
         })
         console.log(body)
@@ -59,8 +65,19 @@ function AddVehicle() {
             />
             <input 
             type="text" 
-            placeholder="Tire Mileage" 
+            placeholder="Tire Miles" 
             onChange={e => setTireMiles(e.target.value)}
+            />
+            
+            <input 
+            type="date" 
+            placeholder="Tire Purchase Date" 
+            onChange={e => setTirePurchaseDate(e.target.value)}
+            />
+            <input 
+            type="text" 
+            placeholder="Tire Rotation Miles" 
+            onChange={e => setRotationMiles(e.target.value)}
             />
             <input 
             type="text" 

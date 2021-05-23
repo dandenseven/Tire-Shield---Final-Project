@@ -41,22 +41,44 @@ function TripsPage() {
 
             {trips.map(trip => 
                 <div>
-                    <table>
-                        <p id={"rcorners1"}><tr>
-                            <th>{trip.destination_add}</th><bk></bk>
-                            </tr><bk></bk>
-                            <tr>
-                                <td>{trip.start_add}</td>
-                            </tr><bk></bk>
-                            <tr>
-                                <td>{trip.distance}</td>
-                            </tr><bk></bk>
-                            <tr>
-                                <td>{trip.weather}</td>
-                            </tr><bk></bk>
-                            {trip.vehicle_id}
-                            {trip.user_id}</p>
-                    </table>
+                    <div className="grid-container">
+                        <table>
+                            <p id={"rcorners1"}><tr>
+                                <th>Starting route:</th>
+                                <th>{trip.starting}</th><bk></bk>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Destination:</th>
+                                    <td>{trip.destination}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Distance:</th>
+                                    <td>{trip.distance}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Weather:</th>
+                                    <td>{trip.weather}</td>
+                                </tr><bk></bk>
+                                <tr></tr>
+                                <tr>
+                                    <th>Start date:</th>
+                                    <td>{trip.start_date}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>End date:</th>
+                                    <td>{trip.end_date}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>Vehicle id:</th>
+                                    <td>{trip.vehicle_id}</td>
+                                </tr><bk></bk>
+                                <tr>
+                                    <th>User id:</th>
+                                    <td>{trip.user_id}</td>
+                                </tr>
+                                </p>
+                        </table>
+                    </div>
                 </div>)}
 
         </div>
