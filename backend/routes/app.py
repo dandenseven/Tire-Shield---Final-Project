@@ -5,6 +5,7 @@ from models.vehicle import Vehicle
 from models.trip import Trip
 from models.users import Users
 from flask_cors import CORS
+import datetime
 
 
 
@@ -58,6 +59,7 @@ def home_login():
         add_user = (username, email, last_login)
         user_id = Users.signup(add_user)
         get_newuser = user_id.update()
+        
         
         return jsonify({"success": True}), 200
     except Exception as e:
@@ -148,24 +150,26 @@ def vehicle_create():
         Ensure you pass a custom ID as part of json body in post request,
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
-    try:
+    # try:
 
-        make = request.json.get("make")
-        model = request.json.get("model")
-        total_miles = request.json.get("total_miles")
-        tire_miles = request.json.get("tire_miles")
-        tire_purchase_date = request.json.get("tire_purchase_date")
-        rotation_miles = request.json.get("rotation_miles")
-        color = request.json.get("color")
-        user_id = request.json.get("user_id")
-        vehicle_id = request.json.get("vehicle_id")
-        new_vehicle = Vehicle(make, model, total_miles, tire_miles, 
+    make = request.json.get("make")
+    model = request.json.get("model")
+    total_miles = request.json.get("total_miles")
+    tire_miles = request.json.get("tire_miles")
+    tire_purchase_date = request.json.get("tire_purchase_date")
+    rotation_miles = request.json.get("rotation_miles")
+    color = request.json.get("color")
+    user_id = request.json.get("user_id")
+    vehicle_id = request.json.get("vehicle_id")
+    if user_id:
+        new_vehicle = Vehicle(make, model, total_miles,tire_miles, 
                                 tire_purchase_date, rotation_miles, color, user_id, vehicle_id)
         new_vehicle.insert()
-        # todo_ref.document(id).set(request.json)
+    # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
+# except Exception as e:
+    # print()
+    return f"An Error Occured"
 
 
 # curl localhost:5000/api/trip_add -X POST -H "Content-Type: application/json" -d '{"destination_add": "Orlando, Florida", "start_add": "Amityville, NY",
@@ -191,6 +195,43 @@ def vehicle_create():
 
 
 
+@app.route("/api/users_home", methods=["POST", "PUT"])
+def home_page():
+    """
+        read() : Fetches documents from Firestore collection as JSON.
+        todo : Return document that matches query ID.
+        all_todos : Return all documents.
+    """
+    # try:
+    
+    data = request.get_json()
+    print(data)
+    user_id = request.json.get("user_id")
+    user = Users.users_for_user(user_id).to_dict()
+    print(user)
+    current_user = Users(user_id=user_id, last_login=user.get("last_login"))
+    
+    output = current_user.user_status()
+    print(output)
+    print(user_id)
+    if user_id:
+        
+        
+        
+        # test = [vehicle.to_dict() for vehicle in vehicles]
+        # print(test)
+        return jsonify(output), 200
+    else:
+        # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
+        # return jsonify(all_vehicle), 200
+        return jsonify({"vehicles": [],"trips": []})
+    # except Exception as e:
+    #     return f"An Error Occured: {e}"
+    # return jsonify({"vehicles": []})
+
+
+
+
 @app.route("/api/trip_add", methods=["POST"])
 def trip_create():
     """
@@ -198,23 +239,25 @@ def trip_create():
         Ensure you pass a custom ID as part of json body in post request,
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
-    try:
+    #try:
         
-        start_add  = request.json.get("start_add")
-        destination_add= request.json.get("destination_add")
-        distance = request.json.get("distance")
-        weather = request.json.get("weather")
-        start_date = request.json.get("start_date")
-        end_date = request.json.get("end_date")
-        vehicle_id =request.json.get("vehicle_id")
-        user_id = request.json.get("user_id")
-        new_trip = Trip(start_add, destination_add, distance,
+    starting  = request.json.get("starting")
+    destination = request.json.get("destination")
+    distance = request.json.get("distance")
+    weather = request.json.get("weather")
+    start_date = request.json.get("start_date")
+    end_date = request.json.get("end_date")
+    vehicle_id =request.json.get("vehicle_id")
+    user_id = request.json.get("user_id")
+    if user_id:
+        new_trip = Trip(starting, destination, distance,
                         weather, start_date, end_date, vehicle_id, user_id)
         new_trip.insert()
-        # todo_ref.document(id).set(request.json)
+    # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
-    except Exception as e:
-        return f"An Error Occured: {e}"
+    # except Exception as e:
+    else:
+        return f"An Error Occured"
 
 
 @app.route("/api/read_users", methods=['GET'])
@@ -258,14 +301,17 @@ def vehicle_read():
     data = request.get_json()
     print(data)
     user_id = request.json.get("user_id")
+    # user = Users.users_for_user(user_id).to_dict()
+    # print(user)
+    
     print(user_id)
     if user_id:
         
         vehicles = Vehicle.vehicles_for_user(user_id)
         print(vehicles)
-        test = [vehicle.to_dict() for vehicle in vehicles]
-        print(test)
-        return jsonify(test), 200
+        # test = [vehicle.to_dict() for vehicle in vehicles]
+        # print(test)
+        return jsonify(vehicles), 200
     else:
         # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
         # return jsonify(all_vehicle), 200
@@ -292,9 +338,9 @@ def trip_read():
     if user_id:
         trips = Trip.trips_for_user(user_id)
         print(trips)
-        test = [trip.to_dict() for trip in trips]
-        print(test)
-        return jsonify(test), 200
+        # test = [trip.to_dict() for trip in trips]
+        # print(trips)
+        return jsonify(trips), 200
     else:
         # all_trip = [doc.to_dict() for doc in Trip.trip_ref.stream()]
         # return jsonify(all_trip), 200

@@ -1,4 +1,5 @@
 from firebase_admin import credentials, firestore, initialize_app
+import datetime
 
 
 class Trip:
@@ -7,10 +8,11 @@ class Trip:
     trip_ref = ""
     
     
-    def __init__(self, start_add, destination_add, distance,
-                    weather, start_date, end_date, vehicle_id, user_id):
-        self.start_add  = start_add
-        self.destination_add = destination_add
+    def __init__(self, starting="", destination="", distance=None,
+                    weather=None, start_date=int, end_date=int, vehicle_id=None, user_id=None):
+
+        self.starting  = starting
+        self.destination = destination
         self.distance = distance
         self.weather = weather
         self.start_date = start_date
@@ -19,9 +21,9 @@ class Trip:
         self.user_id = user_id
 
     def to_json(self):
-        return {"start_add": self.start_add, 
-                "destination_add": self.destination_add,
-                "distance": self.distance,
+        return {"starting": self.starting, 
+                "destination": self.destination,
+                "distance": int(self.distance),
                 "weather": self.weather,
                 "start_date": self.start_date,
                 "end_date": self.end_date,
@@ -44,6 +46,7 @@ class Trip:
 
     @classmethod
     def trips_for_user(cls, user_id):
-        return cls.trip_ref.where("user_id", "==", user_id).get()
+        trips = cls.trip_ref.where("user_id", "==", user_id).get()
+        return [trip.to_dict() for trip in trips]
 
 
