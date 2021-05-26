@@ -1,29 +1,74 @@
 .pageheader {
-    color: rgb(247, 162, 4);
+    color: rgb(19, 99, 248);
+    padding-left: 20px;
+    text-align:left;
 }
 
 
 #rcorners3 {
     border-radius:  25px;
-    border: 2px solid rgb(91, 233, 9);
+    /* border: 2px solid rgb(91, 233, 9); */
+    /* background-color: rgb(91, 233, 9); */
+    box-shadow: snow;
     padding: 20px;
-    width: 340px;
+    width: 360px;
     height: auto;
 
 }
 
 #rcorners4 {
     border-radius:  25px;
-    border: 2px solid rgb(6, 166, 240);
+    /* background-color: rgb(6, 166, 240); */
     padding: 20px;
     width: 400px;
     height: auto;
     
 
 }
+h1 {
+    color: white;
+}
+
+h2 {
+    color: rgb(4, 81, 247);
+}
+
+
+#rcorners5 {
+    position: relative;
+    /* border: 4px solid transparent; */
+    border-radius: 16px;
+    background: right linear-gradient(rgb(23, 232, 240), rgb(39, 109, 238));
+    background-clip: padding-box;
+    padding: 10px;
+    /* just to show box-shadow still works fine */
+    box-shadow: 0 3px 9px black;
+}
+    
+/* #rcorners5::after {
+    position: absolute;
+    top: -4px; bottom: -4px;
+    left: -4px; right: -4px;
+    background: linear-gradient(rgb(0, 58, 250), #a5d9f1);
+    content: '';
+    z-index: -1;
+    border-radius: 16px;
+} */
+    
+
+#rcorners6 {
+    
+    border-radius: 12px;
+    background: linear-gradient(to bottom left,rgb(255, 217, 165), rgb(250, 184, 60), orange);
+    box-shadow: 0 3px 9px black;
+    width: auto;
+    padding: 10px;
+
+}
 
 th {
     text-align: center;
+    
 }
 
 td {
@@ -71,4 +116,12 @@ td {
     padding: 80px;
     align-content: center;
     
+}
+
+
+.weatherConditions {
+    color: white;
+    padding-left: 20px;
+    text-align:start;
+    text-align-last:justify;
 }

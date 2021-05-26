@@ -53,8 +53,8 @@ function TireMainPage() {
                                 <th>{vehicle[1].model}</th>
                                 </tr><bk></bk>
                                 <tr>
-                                    <th>Current tire miles:</th>
-                                    <td>{vehicle[1].total_miles}</td>
+                                    <th>Vehicle miles:</th>
+                                    <td>{vehicle[1].vehicle_miles}</td>
                                     </tr><bk></bk>
                                 <tr>
                                     <th>Tire miles:</th> 

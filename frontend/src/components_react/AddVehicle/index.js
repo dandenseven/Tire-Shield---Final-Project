@@ -5,7 +5,7 @@ import { AuthUserContext, withAuthorization } from '../Session';
 function AddVehicle() {
     const[make, setMake] = useState("");
     const[model, setModel] = useState("");
-    const[total_miles, setMiles] = useState("");
+    const[vehicle_miles, setVehicleMiles] = useState("");
     const[tire_miles, setTireMiles] = useState("");
     const[tire_purchase_date, setTirePurchaseDate] = useState("");
     const[rotation_miles, setRotationMiles] = useState("")
@@ -22,7 +22,7 @@ function AddVehicle() {
         const body = JSON.stringify({
             make: make,
             model: model,
-            total_miles: total_miles,
+            vehicle_miles: vehicle_miles,
             tire_miles: tire_miles,
             tire_purchase_date: new Date(tire_purchase_date).getTime(),
             rotation_miles: rotation_miles,
@@ -61,7 +61,7 @@ function AddVehicle() {
             <input 
             type="text" 
             placeholder="Current Mileage" 
-            onChange={e => setMiles(e.target.value)}
+            onChange={e => setVehicleMiles(e.target.value)}
             />
             <input 
             type="text" 
@@ -84,11 +84,11 @@ function AddVehicle() {
             placeholder="Color" 
             onChange={e => setColor(e.target.value)}
             />
-            <input 
+            {/* <input 
             type="text" 
             placeholder="Vehicle Nickname" 
             onChange={e => setVehicleId(e.target.value)}
-            />
+            /> */}
             <button type="button" onClick={addVehicle}>
                 submit
             </button>

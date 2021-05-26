@@ -42,29 +42,69 @@ class Users:
         trips = Trip.trips_for_user(self.user_id)
         vehicles = Vehicle.vehicles_for_user(self.user_id)
         # vehicles = Vehicle.vehicles_all_for_user(self.user_id)
+    
         for trip in trips:
-            if self.last_login < trip["end_date"] < current_time:
+            print(self.last_login, trip["end_date"] // 1000, current_time)
+            print(self.last_login < trip["end_date"] // 1000 < current_time)
+            if self.last_login < trip["end_date"] // 1000 < current_time:
                 for vehicle in vehicles:
-                    if vehicle[0] == trip.vehicle_id:
+                    if vehicle[0] == trip["vehicle_id"]:
                 # update miles of vehicle here
-                        vehicle[1].total_miles += trip.distance
+                        vehicle[1]["vehicle_miles"] += trip["distance"]
+                        
                 # save and send back to firebase to updated
                         # for vehicle in vehicles:
                         #     if vehicle.vehicle.id == trip.vehicle_id:
                         #         vehicle.total_miles += trip.distance
                         
-                        Vehicle.vehicle_ref.document(trip.vehicle_id).set({"total_miles": vehicle.total_miles})
+                        Vehicle.vehicle_ref.document(trip["vehicle_id"]).update({"vehicle_miles": vehicle[1]["vehicle_miles"]})
+                        # print(trip["vehicle_id"])
 
                     
                 #update user last login to be the current time
-        self.users_ref.document(self.user_id).set({"last_login": current_time})
+        self.users_ref.document(self.user_id).update({"last_login": current_time})
                 # return trips and vehicles to react
         return {"trips": trips, "vehicles": vehicles}
                     
                         
-            
+    def tire_status(self):
+        current_time = datetime.datetime.now().timestamp()
+        trips = Trip.trips_for_user(self.user_id)
+        vehicles = Vehicle.vehicles_for_user(self.user_id)
+
+        for trip in trips:
+            print(self.last_login, trip["end_date"] // 1000, current_time)
+            print(self.last_login < trip["end_date"] // 1000 < current_time)
+            if self.last_login < trip["end_date"] // 1000 < current_time:
+                for vehicle in vehicles:
+                    if vehicle[0] == trip["vehicle_id"]:
+                        vehicle[1]["tire_miles"] += trip["distance"]
+
+                        Vehicle.vehicle_ref.document(trip["vehicle_id"]).update({"tire_miles": vehicle[1]["tire_miles"]})
+
+        self.users_ref.document(self.user_id).update({"last_login": current_time})
+
+        return {"trips": trips, "vehicles": vehicles}
 
 
+    def tire_rotation_status(self):
+        current_time = datetime.datetime.now().timestamp()
+        trips = Trip.trips_for_user(self.user_id)
+        vehicles = Vehicle.vehicles_for_user(self.user_id)
+
+        for trip in trips:
+            print(self.last_login, trip["end_date"] // 1000, current_time)
+            print(self.last_login < trip["end_date"] // 1000 < current_time)
+            if self.last_login < trip["end_date"] // 1000 < current_time:
+                for vehicle in vehicles:
+                    if vehicle[0] == trip["vehicle_id"]:
+                        vehicle[1]["rotation_miles"] += trip["distance"]
+
+                        Vehicle.vehicle_ref.document(trip["vehicle_id"]).update({"rotation_miles": vehicle[1]["rotation_miles"]})
+
+        self.users_ref.document(self.user_id).update({"last_login": current_time})
+
+        return {"trips": trips, "vehicles": vehicles}
     def insert(self):
         self.users_ref.document().set(self.to_json())
         

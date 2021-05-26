@@ -29,7 +29,8 @@ function AddTrip() {
         const response = await fetch("http://localhost:5000/api/users_vehicle", configs);
         const userVehicles = await response.json();
         console.log(userVehicles)
-        setVehicles(userVehicles);
+        setVehicles(userVehicles)
+        setVehicleId(userVehicles[0][0]);
     }
 
 
@@ -94,9 +95,9 @@ function AddTrip() {
             placeholder="End Date" 
             onChange={e => setEndDate(e.target.value)}
             />
-            <select 
+            <select value={vehicles[0] && vehicles[0][0]}
             onChange={e => setVehicleId(e.target.value)}>
-                {vehicles.map(v => <option value={v[0]}>{v[1].make}</option>)}
+                {vehicles.map(v => <option value={v[0]}>{v[1].make} {v[0]}</option>)}
             </select>
  
             <button type="button" onClick={addTrip}>

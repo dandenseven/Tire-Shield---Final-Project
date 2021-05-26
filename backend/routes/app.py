@@ -154,7 +154,7 @@ def vehicle_create():
 
     make = request.json.get("make")
     model = request.json.get("model")
-    total_miles = request.json.get("total_miles")
+    vehicle_miles = request.json.get("vehicle_miles")
     tire_miles = request.json.get("tire_miles")
     tire_purchase_date = request.json.get("tire_purchase_date")
     rotation_miles = request.json.get("rotation_miles")
@@ -162,7 +162,7 @@ def vehicle_create():
     user_id = request.json.get("user_id")
     vehicle_id = request.json.get("vehicle_id")
     if user_id:
-        new_vehicle = Vehicle(make, model, total_miles,tire_miles, 
+        new_vehicle = Vehicle(make, model, vehicle_miles, tire_miles, 
                                 tire_purchase_date, rotation_miles, color, user_id, vehicle_id)
         new_vehicle.insert()
     # todo_ref.document(id).set(request.json)
@@ -364,6 +364,69 @@ def trip_read():
 #         return f"An Error Occured: {e}"
             
 
+@app.route("/api/update_tire_miles", methods=['POST', 'PUT'])
+def tire_mileage():
+
+    data = request.get_json()
+    print(data)
+    user_id = request.json.get("user_id")
+    user = Users.users_for_user(user_id).to_dict()
+    print(user)
+    current_user = Users(user_id=user_id, last_login=user.get("last_login"))
+    
+    output = current_user.tire_status()
+    print(output)
+    print(user_id)
+    if user_id:
+        
+        
+        
+        # test = [vehicle.to_dict() for vehicle in vehicles]
+        # print(test)
+        return jsonify(output), 200
+    else:
+        # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
+        # return jsonify(all_vehicle), 200
+        return jsonify({"vehicles": [],"trips": []})
+
+
+@app.route("/api/update_rotation_miles", methods=['POST', 'PUT'])
+def rotation_mileage():
+
+    data = request.get_json()
+    print(data)
+    user_id = request.json.get("user_id")
+    user = Users.users_for_user(user_id).to_dict()
+    print(user)
+    current_user = Users(user_id=user_id, last_login=user.get("last_login"))
+    
+    output = current_user.tire_rotation_status()
+    print(output)
+    print(user_id)
+    if user_id:
+        
+        
+        
+        # test = [vehicle.to_dict() for vehicle in vehicles]
+        # print(test)
+        return jsonify(output), 200
+    else:
+        # all_vehicle = [doc.to_dict() for doc in Vehicle.vehicle_ref.stream()]
+        # return jsonify(all_vehicle), 200
+        return jsonify({"vehicles": [],"trips": []})
+
+    # try:
+    #     user_id = request.json.get("user_id")
+    #     tire_miles = request.json.get("tire_miles")
+    #     user_tire_miles = Vehicle(tire_miles)
+    #     trips = Trip.trips_for_user(user_id)
+    #     vehicles = Vehicle.vehicles_for_user(user_id)
+    #     user_tire_miles.update({"trips": trips, "vehicles": vehicles})
+    #     print(user_tire_miles)
+
+    #     return jsonify({"success": True}), 200
+    # except Exception as e:
+    #     return f"An Error Occured: {e}"
 
 
 
@@ -404,7 +467,7 @@ def vehicle_update(id):
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route("/api/udate_trip", methods=['POST', 'PUT'])
+@app.route("/api/update_trip", methods=['POST', 'PUT'])
 def trip_update(id):
     """
         update() : Update document in Firestore collection with request body.
