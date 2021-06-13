@@ -158,12 +158,13 @@ def vehicle_create():
     tire_miles = request.json.get("tire_miles")
     tire_purchase_date = request.json.get("tire_purchase_date")
     rotation_miles = request.json.get("rotation_miles")
+    warranty_miles = request.json.get("warranty_miles")
     color = request.json.get("color")
     user_id = request.json.get("user_id")
     vehicle_id = request.json.get("vehicle_id")
     if user_id:
         new_vehicle = Vehicle(make, model, vehicle_miles, tire_miles, 
-                                tire_purchase_date, rotation_miles, color, user_id, vehicle_id)
+                                tire_purchase_date, rotation_miles, warranty_miles,color, user_id, vehicle_id)
         new_vehicle.insert()
     # todo_ref.document(id).set(request.json)
         return jsonify({"success": True}), 200
@@ -452,7 +453,7 @@ def update():
 
 
 @app.route("/api/update_vehicle", methods=['POST', 'PUT'])
-def vehicle_update(id):
+def vehicle_update():
     """
         update() : Update document in Firestore collection with request body.
         Ensure you pass a custom ID as part of json body in post request,
@@ -460,12 +461,31 @@ def vehicle_update(id):
     """
     try:
         id = request.json['id']
-        vehicle_update = Vehicle()
-        vehicle_update.update()
+        vehicle_update = Vehicle(vehicle_id=id)
+        vehicle_update.reset_tires()
         # todo_ref.document(id).update(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
+
+
+@app.route("/api/update_rotation", methods=['POST', 'PUT'])
+def vehicle_rotation():
+    """
+        update() : Update document in Firestore collection with request body.
+        Ensure you pass a custom ID as part of json body in post request,
+        e.g. json={'id': '1', 'title': 'Write a blog post today'}
+    """
+    try:
+        id = request.json['id']
+        vehicle_update = Vehicle(vehicle_id=id)
+        vehicle_update.reset_rotation_tires()
+        # todo_ref.document(id).update(request.json)
+        return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+
 
 @app.route("/api/update_trip", methods=['POST', 'PUT'])
 def trip_update(id):
