@@ -14,6 +14,7 @@ import reportWebVitals from './reportWebVitals';
 //   document.getElementById('root')
 // );
 
+
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
     <App />

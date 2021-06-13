@@ -1,3 +1,13 @@
+.container {
+    background-image: url('./NewYork.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment:fixed;
+    background-position: center;
+    padding: 20px;
+    background-origin: border-box;
+} 
+
 .pageheader {
     color: rgb(19, 99, 248);
     padding-left: 20px;
@@ -5,28 +15,92 @@
 }
 
 
-#rcorners3 {
-    border-radius:  25px;
-    /* border: 2px solid rgb(91, 233, 9); */
-    /* background-color: rgb(91, 233, 9); */
-    box-shadow: snow;
-    padding: 20px;
-    width: 360px;
-    height: auto;
 
+
+
+.glow {
+    color: #FB4264;
+    font-size: 18px;
+    line-height: 5vw;
+    text-shadow: 0 0 3vw #F40A35;
+  }
+.glow {
+    animation: glow 3.2s ease infinite;
+    -moz-animation: glow 3.2s ease infinite;
+    -webkit-animation: glow 3.2s ease infinite;
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #f3ebeb, 0 0 5vw #FA1C16, 0 0 .4vw #FED128, .3vw .3vw .1vw #e9d693;
+      color: #FED128;
+    }
+    70% {
+      text-shadow: 0 0 .1vw #f1d5d4, 0 0 1.5vw #f1e6e5, 0 0 1vw #800E0B, 0 0 1vw #800E0B, 0 0 .2vw #800E0B, .2vw .2vw .1vw #e9e4d4;
+      color: #f3ef08;
+    }
+  }
+
+
+
+
+
+.example-parent {
+    /* border: 1px solid #999; */
+    display: flex;
+    padding: 20px;
+    overflow-x: scroll;
+}
+
+
+#rcorners7 {
+    position:relative;
+    border-radius: 12px;
+    box-shadow: 0 3px 9px black;
+    background-color: whitesmoke;
+    background-blend-mode: color rgb(9, 52, 192) saturation;
+    background: linear-gradient(to top right,rgb(9, 52, 192), rgb(255, 255, 255), orange);
+    width:fit-content;
+    align-content: center;
+    font-size: 14px;
+    padding: 10px;
+    padding-bottom: 10px;
+    margin: 20px;
+    opacity: 0.8;
+    
 }
 
 #rcorners4 {
-    border-radius:  25px;
-    /* background-color: rgb(6, 166, 240); */
-    padding: 20px;
-    width: 400px;
-    height: auto;
-    
+    position:relative,static;
+    border-radius: 12px;
+    box-shadow: 0 3px 9px black;
+    background-color: whitesmoke;
+    width: max-content;
+    padding: 10px;
+    padding-bottom: 10px;
+    margin: 20px;
+    opacity: 0.8;
 
 }
+
+#rcorners3 {
+    position:relative;
+    border-radius: 12px;
+    box-shadow: 0 3px 9px rgb(4, 32, 158);
+    background-color: whitesmoke;
+    width: 450px;
+    height: auto;
+    padding: 10px;
+    padding-bottom: 10px;
+    margin: 20px;
+    opacity: 0.8;
+}
+
+
 h1 {
     color: white;
+    padding-left: 20px;
 }
 
 h2 {
@@ -38,7 +112,15 @@ h2 {
     position: relative;
     /* border: 4px solid transparent; */
     border-radius: 16px;
-    background: right linear-gradient(rgb(23, 232, 240), rgb(39, 109, 238));
+    position:relative;
+    border-radius: 12px;
+    box-shadow: 0 3px 9px black;
+    background-color: whitesmoke;
+    width:fit-content;
+    padding: 10px;
+    padding-bottom: 10px;
+    margin: 20px;
+    opacity: 0.8;
     background-clip: padding-box;
     padding: 10px;
     /* just to show box-shadow still works fine */
@@ -61,8 +143,10 @@ h2 {
     border-radius: 12px;
     background: linear-gradient(to bottom left,rgb(255, 217, 165), rgb(250, 184, 60), orange);
     box-shadow: 0 3px 9px black;
-    width: auto;
+    width:max-content;
     padding: 10px;
+    margin-block: 20px;
+    
 
 }
 
@@ -74,6 +158,14 @@ th {
 td {
     text-align: center;
 }
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+
 .weatherforcast {
     display: grid;
     align-content: center;
@@ -81,32 +173,7 @@ td {
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-gap: 16px;
     margin: 16px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.column {
-    float: left;
-    width: 33.33%;
-    padding: 10px;
-    text-align: center;
-
-}
-
-
-.grid-container {
-    display: block;
-    grid-auto-columns: 20px;
-    grid-gap: 10px;
-    padding: 10px;
-}
-
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
+    width:max-content;
 }
 
 .weatherimg {
@@ -118,6 +185,12 @@ td {
     
 }
 
+.weatheroutlook {
+    color: white;
+    align-content: center;
+    padding-left: 80px;
+
+}
 
 .weatherConditions {
     color: white;

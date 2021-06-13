@@ -10,7 +10,7 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
-import TireMainPage from '../Tiremain';
+import TireMainPage from '../Vehicle';
 import TripsPage from '../Trips';
 import WeatherPage from '../Weather';
 import AddTrip from '../AddTrip';
@@ -36,7 +36,7 @@ const App = () => (
             <Route path={ROUTES.HOME} component={HomePage} />
             <Route path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route path={ROUTES.ADMIN} component={AdminPage} />
-            <Route path={ROUTES.TIREMAIN} component={TireMainPage} />
+            <Route path={ROUTES.VEHICLE} component={TireMainPage} />
             <Route path={ROUTES.TRIPS} component={TripsPage} />
             <Route path={ROUTES.WEATHER} component={WeatherPage} />
             <Route path={ROUTES.ADDTRIP} component={AddTrip} />
@@ -44,6 +44,7 @@ const App = () => (
             {/* <Route path={ROUTES.ADDUSER} component={AddUser} /> */}
         </div>
     </Router>
+
             
 );
 

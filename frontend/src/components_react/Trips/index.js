@@ -5,6 +5,7 @@ import '../../Sass/Components/Rcorners.scss';
 
 function TripsPage() { 
     const[trips, setTrips] = useState([]);
+    const[directions, setDirections] = useState([])
 
     const userId = useContext(FirebaseContext).auth.currentUser.uid
 
@@ -20,8 +21,22 @@ function TripsPage() {
         setTrips(userTrips);
     }
 
+
+    async function getDirections() {
+        const response = await fetch(`https://maps.googleapis.com/maps/api/directions/json?origin=40.71&destination=-74.00&departure_time=1622557978157&mode=transit&key=AIzaSyB6NLePSdNwT_-g9RsNP521jbvL2hzjtbc`);
+        
+        const userDirections = await response.json();
+        console.log(userDirections)
+        setDirections(userDirections);
+
+    }
+
     useEffect (() => getTrips(), []);
-    // const test = trips.map(t => <p></p>) 
+    // const test = trips.map(t => <p></p>)
+
+    useEffect (() => getDirections(), []);
+
+
 
     return (
         
@@ -68,14 +83,7 @@ function TripsPage() {
                                     <th>End date:</th>
                                     <td>{trip.end_date}</td>
                                 </tr><bk></bk>
-                                <tr>
-                                    <th>Vehicle id:</th>
-                                    <td>{trip.vehicle_id}</td>
-                                </tr><bk></bk>
-                                <tr>
-                                    <th>User id:</th>
-                                    <td>{trip.user_id}</td>
-                                </tr>
+                                
                                 </p>
                         </table>
                     </div>

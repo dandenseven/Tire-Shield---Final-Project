@@ -1,8 +1,15 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useContext, useState, useEffect, useLayoutEffect} from 'react';
 import { FirebaseContext } from '../Firebase';
 import './home.css';
 // import '../../Sass/Components/Rcorners.scss';
 import { withAuthorization } from '../Session';
+import { ThemeProvider } from '@material-ui/styles';
+import NewYork from './NewYork.png';
+import Button from '@material-ui/core/Button';
+import ScrollMenu from'react-horizontal-scrolling-menu';
+import { GridList, GridListTile } from '@material-ui/core';
+import FlexboxPage from 'react-bootstrap';
+
 
 function HomePage() {
     const[vehicles, setVehicles] = useState([]);
@@ -11,6 +18,58 @@ function HomePage() {
 
     const userId = useContext(FirebaseContext).auth.currentUser.uid
 
+    const precip = weather.minutely && weather.minutely.reduce((a,b) => a + b.precipitation,0)
+    
+
+
+
+
+
+
+    function showDate(date) {
+        const originalDate = new Date(date)
+        const options = {
+            year:"numeric",month:"long",day:"numeric"
+
+        }
+        return new Intl.DateTimeFormat("en-US",options).format(date)
+    };
+
+
+    function getWarning(mileage) {
+        if (mileage >= 40000) {
+            return (
+                <div>
+                    <th className="glow"><strong>PLEASE SLOW DOWN TO 20mph DURING INCLEMENT WEATHER</strong></th>
+                    <tr style={{backgroundColor: "red"}}>Tire Miles: {mileage} </tr>
+                </div>
+            )
+        }   else if (mileage >= 35000) {
+            return (
+                <div>
+                    <th>Exercise caution in inclement weather - SLOW DOWN</th>
+                    <bk></bk>
+                    <tr style={{backgroundColor: "orange"}}>Tire Miles: {mileage} </tr>
+                </div>
+            )
+        }   else
+            return 
+                <div>
+                    <h3>IT'S RAINING DRIVE WITH CAUTION</h3>
+                </div>
+    
+
+        };
+
+    function getInches(valNum) {
+        return valNum / 25.4
+
+        };
+
+    
+
+    // const datenew = vehicles.map(vehicle => vehicle[1].tire_purchasee
+    
     // async function getVehicles() {
     //     console.log(userId)
     //     const configs = {
@@ -107,190 +166,198 @@ function HomePage() {
 
 
     return (
-        
-        <div>
-            <h1 className="pageheader">Dashboard</h1>
+        <div className="container">
+            <div>
+                <h1 className="pageheader">Dashboard</h1>
 
-                {/* <p>The Home Page is accessible by every signed in user.</p>
-                    <p>show last vehicle used</p>
-                        <p>show most recent trip</p>
-                            <p>show current miles</p>
-                                <p>show weather snapshot</p>
-                                    <p> show last login</p>
-                                        <p>show tire status</p>
-                                            <p>show tire rotation expected date</p>
-                                                <p>show oil change expected date</p> */}
+                    {/* <p>The Home Page is accessible by every signed in user.</p>
+                        <p>show last vehicle used</p>
+                            <p>show most recent trip</p>
+                                <p>show current miles</p>
+                                    <p>show weather snapshot</p>
+                                        <p> show last login</p>
+                                            <p>show tire status</p>
+                                                <p>show tire rotation expected date</p>
+                                                    <p>show oil change expected date</p> */}
+
+                            
 
                         
-
-                    <div className="row">
-                        <div className="column">
-                            <div id={"rcorners5"}>
+                            
+                        
+                                
                                 <h1>My Vehicles</h1>
-                                {vehicles.map(vehicle => 
-                                <div>
-                                    {/* <div className="column"  className="grid-container" > */}
+                                <div className="example-parent">
                                     
-                                        <table>
-                                            <p id={"rcorners3"}>
-                                                
-                                                <tr>
-                                                    <th>Make:</th>
-                                                    <th>{vehicle[1].make}</th><bk></bk>
-                                                </tr>
-                                                <tr>
-                                                    <th>Model:</th>
-                                                    <td>{vehicle[1].model}</td>
-                                                </tr><bk></bk>
-                                                <tr>
+                                        
+                                            {vehicles.map(vehicle => 
+
+                                            <div id="rcorners7">
+                                                <div>
+                                                    <th>{vehicle[1].make}&nbsp;
+                                                    {vehicle[1].model}
+                                                    </th>
+                                                </div>
+                                                <div>
                                                     <th>Vehicle miles:</th>
                                                     <td>{vehicle[1].vehicle_miles}</td>
-                                                    </tr><bk></bk>
-                                                <tr>
-                                                    <th>Tire miles:</th> 
+                                                </div>
+                                                <div>
+                                                    <th>Tire miles:</th>
                                                     <td>{vehicle[1].tire_miles}</td>
-                                                    </tr><bk></bk>
-                                                <tr>
-                                                    <th>Tire purchased date:</th> 
-                                                    <td>{vehicle[1].tire_purchase_date}</td>
-                                                </tr><bk></bk>
-                                                <tr>
-                                                    <th>Miles until rotation:</th> 
+                                                </div>
+                                                <div>
+                                                    <th>Tire purchased date:</th>
+                                                    <td>{showDate(vehicle[1].tire_purchase_date)}</td>
+                                                </div>
+                                                <div>
+                                                    <th>Miles until rotation:</th>
                                                     <td>{vehicle[1].rotation_miles}</td>
-                                                </tr><bk></bk>
-                                                <tr>
-                                                    <th>Color:</th> 
+                                                </div>
+                                                <div>
+                                                    <th>Color:</th>
                                                     <td>{vehicle[1].color}</td>
-                                                </tr><bk></bk>
-                                                <tr>
-                                                    <td>{vehicle[1].user_id}</td>
-                                                </tr>
-                                                </p>
-                                        </table>
-                                        
+                                                </div>
+                                                <div>
+                                                    <th>Precipitation:</th>
+                                                    <th>{(weather.daily && precip)}</th>
+                                                </div>
+                                                <div>
+                                                    
+                                                    <th>Rain:</th>
+                                                    <th>{weather.daily && (getInches(weather.daily[0].rain))}</th>
+                                                    
+                                                </div>  
+                                                    
+                                                <div>
+                                                <div id="rcorners3">
+                                                <th>{weather.daily && precip > 0.5 && <p>Be careful out there</p>}</th>
+                                                    {/* <h3>{vehicle[1].make}</h3> */}
+                                                    {getWarning(vehicle[1].tire_miles)}
+                                                </div>
+                                                </div>
+                                            
+                                            
+                                            </div> )}
+                                     
 
-                                    {/* // </div> */}
-                                </div>)}
-                            </div>
-                        </div>
+                                </div>
+                            
+                    
                 
-            
-                        <div className="column">
-                            <div id={"rcorners5"}>
-                                <h1>My Trips</h1> 
-                                {trips.map(trip => 
-                                    <div>
-                                        
-                                        <table>
-                                            <p id={"rcorners4"}><tr>
-                                            <th>Starting route:</th>
-                                            <th>{trip.starting}</th><bk></bk>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>Destination:</th>
-                                                <td>{trip.destination}</td>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>Distance:</th>
-                                                <td>{trip.distance}</td>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>Weather:</th>
-                                                <td>{trip.weather}</td>
-                                            </tr><bk></bk>
-                                            <tr></tr>
-                                            <tr>
-                                                <th>Start date:</th>
-                                                <td>{trip.start_date}</td>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>End date:</th>
-                                                <td>{trip.end_date}</td>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>Vehicle id:</th>
-                                                <td>{trip.vehicle_id}</td>
-                                            </tr><bk></bk>
-                                            <tr>
-                                                <th>User id:</th>
-                                                <td>{trip.user_id}</td>
-                                            </tr>
-                                            </p>
-                                        </table>        
-                                    </div>)}
-                            </div>
-                        </div>
+                            
                                 
-
-                        
-                        <div className="column">
-                            <div id={"rcorners5"}>
-                                <h1>7 Day Forecast</h1>
-                                    <div className="weatherforcast">
-                                        {weather.daily && weather.daily.slice(0, 7).map(d => (
-                                            <div>
-                                                <img
-                                                    src={`https://openweathermap.org/img/w/${d.weather[0].icon}.png`}
-                                                    alt={d.weather[0].main}
-                                                />
-                                                <div>{d.temp.max} / {d.temp.min}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                        <h2>Current Weather Conditions</h2>
-                                        <div className="weatherConditions">
-                                            <div id={"rcorners6"}>
-                                            <tr>
-                                                <th>Clouds:</th>
-                                                <th>{weather.daily && weather.current.clouds}</th><bk></bk>
-                                            </tr>
-                                            <tr>
-                                                <th>Temp:</th>
-                                                <th>{weather.daily && weather.current.temp}</th><bk></bk>
-                                            </tr>
-                                            <tr>
-                                                <th>Feels like:</th>
-                                                <th>{weather.daily && weather.current.feels_like}</th><bk></bk>
-                                            </tr>
-                                            <tr>
-                                                <th>Humidity:</th>
-                                                <th>{weather.daily && weather.current.humidity}</th><bk></bk>
-                                            </tr>
-                                            <tr>
-                                                <th>Sunrise:</th>
-                                                <th>{weather.daily && weather.current.sunrise}</th>
-                                            </tr>
-                                            <tr>
-                                                <th>Sunset:</th>
-                                                <th>{weather.daily && weather.current.sunset}</th>
-                                            </tr>
-                                            <tr>
-                                                <th>UV Index:</th>
-                                                <th>{weather.daily && weather.current.uvi}</th>
-                                            </tr>
-                                            <tr>
-                                                <th>visibility:</th>
-                                                <th>{weather.daily && weather.current.visibility}</th>
-                                            </tr>
-                                            </div>
-                                            <div>
-                                                <tr>
-                                                    <th>Weather Outlook</th><bk></bk>
-                                                    <th>{weather.daily && weather.current.weather[0].description}
-                                                    </th>
-                                                </tr>
-                                            </div>
-                                        </div>
+                                    <h1>My Trips</h1>
+                            <div className="example-parent">
+                                    {trips.map(trip => 
+                                        
+                                            
+                                            <div id={"rcorners4"}>
+                                                
+                                                    <div>
+                                                    <th>Starting route:</th>
+                                                    <td>{trip.starting}</td><bk></bk>
+                                                    </div><bk></bk>
+                                                    <div>
+                                                        <th>Destination:</th>
+                                                        <td>{trip.destination}</td>
+                                                    </div><bk></bk>
+                                                    <div>
+                                                        <th>Distance:</th>
+                                                        <td>{trip.distance}</td>
+                                                    </div><bk></bk>
+                                                    <div>
+                                                        <th>Weather:</th>
+                                                        <td>{trip.weather}</td>
+                                                    </div><bk></bk>
+                                                    
+                                                    <div>
+                                                        <th>Start date:</th>
+                                                        <td>{showDate(trip.start_date)}</td>
+                                                    </div><bk></bk>
+                                                    <div>
+                                                        <th>End date:</th>
+                                                        <td>{showDate(trip.end_date)}</td>
+                                                    </div><bk></bk>
+                                                    
+                                                
+                                            </div>        
+                                        )}
+                                
                             </div>
-                        </div>
-                    </div>
+                                    
+
+                            
+                            
+                                
+                            <h1>7 Day Forecast</h1>
+                            <div className="mychart3">
+                                        <div className="weatherforcast">
+                            
+                                            {weather.daily && weather.daily.slice(0, 7).map(d => (
+                                                <div>
+                                                    <img
+                                                        src={`https://openweathermap.org/img/w/${d.weather[0].icon}.png`}
+                                                        alt={d.weather[0].main}
+                                                    />
+                                                    <div>{d.temp.max.toFixed()}</div> - <div>{d.temp.min.toFixed()}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                            <h2>Current Weather Conditions</h2>
+                                            <div className="weatheroutlook">
+                                                <div>
+                                                    <th>Weather Outlook &nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.weather[0].description}</th><bk></bk>
+                                                </div>    
+                                            </div>
+                                            <div className="weatherConditions">
+                                                <div id={"rcorners6"}>
+                                                <div>
+                                                    <th>Clouds:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.clouds}</th><bk></bk>
+                                                </div>
+                                                <div>
+                                                    <th>Temp:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.temp}</th><bk></bk>
+                                                </div>
+                                                <div>
+                                                    <th>Feels like:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.feels_like}</th><bk></bk>
+                                                </div>
+                                                <div>
+                                                    <th>Humidity:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.humidity}</th><bk></bk>
+                                                </div>
+                                                <div>
+                                                    <th>Sunrise:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.sunrise}</th>
+                                                </div>
+                                                <tr>
+                                                    <th>Sunset:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.sunset}</th>
+                                                </tr>
+                                                <div>
+                                                    <th>UV Index:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.uvi}</th>
+                                                </div>
+                                                <div>
+                                                    <th>visibility:&nbsp;</th><bk></bk>
+                                                    <th>{weather.daily && weather.current.visibility}</th>
+                                                </div>
+                                                </div>
+                                                
+                                            </div>
+                                
+                            </div>
+                        {/* </div> */}
 
 
-                        
-        
+                            
+            
+            </div>
         </div>
-    
-        );
+            );
 
 
     }

@@ -1,0 +1,34 @@
+#rcorners5 {
+    position: relative;
+    /* border: 4px solid transparent; */
+    border-radius: 16px;
+    background: right linear-gradient(rgb(23, 232, 240), rgb(39, 109, 238));
+    background-clip: padding-box;
+    padding: 10px;
+    /* just to show box-shadow still works fine */
+    box-shadow: 0 3px 9px black;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#rcorners7 {
+    position: relative;
+    border-radius:  16px;
+    border: 2px solid rgb(131, 241, 41);
+    padding: 20px;
+    /* width: 400px; */
+    height: auto;
+
+}

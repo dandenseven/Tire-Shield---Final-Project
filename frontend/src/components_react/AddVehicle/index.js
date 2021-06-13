@@ -8,7 +8,8 @@ function AddVehicle() {
     const[vehicle_miles, setVehicleMiles] = useState("");
     const[tire_miles, setTireMiles] = useState("");
     const[tire_purchase_date, setTirePurchaseDate] = useState("");
-    const[rotation_miles, setRotationMiles] = useState("")
+    const[rotation_miles, setRotationMiles] = useState("");
+    const[warranty_miles, setWarrantyMiles] = useState("");
     const[color, setColor] = useState("");
     const[vehicle_id, setVehicleId] = useState("");
 
@@ -26,6 +27,7 @@ function AddVehicle() {
             tire_miles: tire_miles,
             tire_purchase_date: new Date(tire_purchase_date).getTime(),
             rotation_miles: rotation_miles,
+            warranty_miles: warranty_miles,
             color: color,
             user_id: userId,
             vehicle_id: vehicle_id
@@ -78,6 +80,11 @@ function AddVehicle() {
             type="text" 
             placeholder="Tire Rotation Miles" 
             onChange={e => setRotationMiles(e.target.value)}
+            />
+            <input
+            type="text"
+            placeholder="Tire Warranty Miles"
+            onChange={e => setWarrantyMiles(e.target.value)}
             />
             <input 
             type="text" 

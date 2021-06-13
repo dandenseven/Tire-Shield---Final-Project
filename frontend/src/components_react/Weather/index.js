@@ -34,8 +34,8 @@ function WeatherPage() {
 
             switch (APIName) {
                 case "oneCall":
-                    APICall = `https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=20215101619&units=imperial&lang=en&appid=6693af864d042d45210a62d91db9b718`;
-
+                    APICall = `https://api.openweathermap.org/data/2.5/weather?lat=40.71&lon=-74.00&dt=20215101619&units=imperial&lang=en&appid=6693af864d042d45210a62d91db9b718`;
+                    
                     break;
 
                 case "reverseGeocoding":
@@ -121,7 +121,7 @@ function WeatherPage() {
         return (
             <div>
                 <h1>Current Weather</h1>
-                {/* <button onClick={() => console.log(currentLocation)}>Show coordinates</button> */}
+                <button onClick={() => console.log(currentLocation)}>Show coordinates</button>
                 <p>Local Weather Forecast</p>
                     <p> 7 seven day weather forcast</p>
                         <p>weather alerts</p>
