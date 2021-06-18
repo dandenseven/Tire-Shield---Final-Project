@@ -1,20 +1,20 @@
-import 
 
-* {
+
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
-body {
+/* body {
   height: 100%;
-}
+} */
 body {
-  font: 12px 'Open Sans', sans-serif;
-  color: #212121;
+  /* font: 12px 'Open Sans', sans-serif;
+  color: #212121; */
   background: #121086;
   /* overflow-x: hidden; */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 /* .example-parent {
@@ -86,11 +86,12 @@ input[data-function*='swipe']:checked ~ .sidebar .menu li {
   width: 100%;
 }
 .sidebar {
+  z-index: 10001;
   transform: translate3d(-280px, 0px, 0px);
   position: absolute;
   width: 280px;
-  background: #ffffff;
-  color: rgb(97, 192, 247);
+  background: #fdfdfd;
+  color: rgb(250, 253, 255);
   left: 0;
   height: 100%;
   transition: all .3s;
@@ -101,7 +102,7 @@ input[data-function*='swipe']:checked ~ .sidebar .menu li {
   width: 0%;
 }
 .menu li a {
-  color: rgb(7, 179, 247);
+  color: rgb(20, 164, 247);
   border: 3px solid rgb(255, 97, 6);
   text-align: center;
   font-size: 18px;

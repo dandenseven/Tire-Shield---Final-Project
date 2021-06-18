@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../../Sass/App.scss';
 // import { withFirebase } from '../Firebase';
 import Navigation from '../Navigation';
-import LandingPage from '../Landing';
+// import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
@@ -11,8 +11,8 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import TireMainPage from '../Vehicle';
-import TripsPage from '../Trips';
-import WeatherPage from '../Weather';
+// import TripsPage from '../Trips';
+// import WeatherPage from '../Weather';
 import AddTrip from '../AddTrip';
 import AddVehicle from '../AddVehicle';
 // import AddUser from '../AddUser';
@@ -29,7 +29,7 @@ const App = () => (
 
             <hr />
 
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+            {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
             <Route path={ROUTES.SIGN_IN} component={SignInPage} />
             <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
@@ -37,8 +37,8 @@ const App = () => (
             <Route path={ROUTES.ACCOUNT} component={AccountPage} />
             <Route path={ROUTES.ADMIN} component={AdminPage} />
             <Route path={ROUTES.VEHICLE} component={TireMainPage} />
-            <Route path={ROUTES.TRIPS} component={TripsPage} />
-            <Route path={ROUTES.WEATHER} component={WeatherPage} />
+            {/* <Route path={ROUTES.TRIPS} component={TripsPage} /> */}
+            {/* <Route path={ROUTES.WEATHER} component={WeatherPage} /> */}
             <Route path={ROUTES.ADDTRIP} component={AddTrip} />
             <Route path={ROUTES.ADDVEHICLE} component={AddVehicle} />
             {/* <Route path={ROUTES.ADDUSER} component={AddUser} /> */}

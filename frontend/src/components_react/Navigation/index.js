@@ -4,13 +4,14 @@ import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import { AuthUserContext } from '../Session';
 import '../../Css/Layout/Navigation.css';
+import { Button } from '@material-ui/core';
+import  { withFirebase } from '../Firebase';
 
-
-const Navigation = () => (
+const Navigation = ({firebase}) => (
     <div>
         <AuthUserContext.Consumer>
             {authUser =>
-                authUser ? <NavigationAuth /> : <NavigationNonAuth />
+                authUser ? <NavigationAuth firebase={firebase}/> : <NavigationNonAuth />
             }
         </AuthUserContext.Consumer>
     </div>
@@ -19,9 +20,9 @@ const Navigation = () => (
 
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = ({firebase}) => (
 
-<body>
+
   <div className="example-parent">
     <div className="container">
       <input data-function="swipe" id="swipe" type="checkbox"></input>
@@ -34,9 +35,9 @@ const NavigationAuth = () => (
           <nav className="menu">
           
             <ul>
-              <li>
+              {/* <li>
                 <Link to={ROUTES.LANDING}>Landing</Link>
-              </li>
+              </li> */}
               <li>
                 <Link class="active"to={ROUTES.HOME}>Home</Link>
               </li>
@@ -46,12 +47,12 @@ const NavigationAuth = () => (
               <li>
                 <Link to={ROUTES.VEHICLE}>Vehicles</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to={ROUTES.TRIPS}>Trips</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link to={ROUTES.WEATHER}>Weather</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to={ROUTES.ADDTRIP}>AddTrip</Link>
               </li>
@@ -61,8 +62,8 @@ const NavigationAuth = () => (
               {/* <li>
                 <Link to={ROUTES.ADDUSER}>AddUser</Link>
               </li> */}
-              <li>
-                <SignOutButton />
+              <li><Button variant="container" primary="color"
+                SignOutButton onClick={firebase.doSignOut}>Sign out</Button>
               </li>
             </ul>
           </nav>
@@ -71,17 +72,17 @@ const NavigationAuth = () => (
 
     </div>
   </div>
-</body>
+
 );
 
 const NavigationNonAuth = () => (
     <ul>
-        <li>
+        {/* <li>
             <Link to={ROUTES.LANDING}>Landing</Link>
-        </li>
+        </li> */}
         <li>
             <Link to={ROUTES.SIGN_IN}>Sign In</Link>
         </li>
     </ul>
 );
-export default Navigation;
+export default withFirebase(Navigation);

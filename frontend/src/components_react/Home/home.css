@@ -1,3 +1,5 @@
+
+
 .container {
     background-image: url('./NewYork.png');
     background-repeat: no-repeat;
@@ -9,9 +11,12 @@
 } 
 
 .pageheader {
-    color: rgb(19, 99, 248);
-    padding-left: 20px;
+    color: rgb(255, 255, 255);
+    padding-left: 50px;
+    font-size: 42px;
     text-align:left;
+    text-shadow: rgb(38, 38, 39);
+    
 }
 
 
@@ -19,12 +24,21 @@
 
 
 .glow {
-    color: #FB4264;
-    font-size: 18px;
+    color: #ffee07;
+    font-size: 14px;
     line-height: 5vw;
-    text-shadow: 0 0 3vw #F40A35;
+    /* text-shadow: 0 0 3vw #F40A35; */
+    box-shadow: 0 10px 16px 0 rgb(0,0,2,0.6);
   }
-.glow {
+
+  .glow1 {
+    color: #f7f6f2;
+    font-size: 14px;
+    line-height: 5vw;
+    /* text-shadow: 0 0 3vw #F40A35; */
+    box-shadow: 0 10px 16px 0 rgb(0,0,2,0.6);
+  }
+/* .glow {
     animation: glow 3.2s ease infinite;
     -moz-animation: glow 3.2s ease infinite;
     -webkit-animation: glow 3.2s ease infinite;
@@ -40,7 +54,8 @@
       text-shadow: 0 0 .1vw #f1d5d4, 0 0 1.5vw #f1e6e5, 0 0 1vw #800E0B, 0 0 1vw #800E0B, 0 0 .2vw #800E0B, .2vw .2vw .1vw #e9e4d4;
       color: #f3ef08;
     }
-  }
+  } */
+
 
 
 
@@ -53,7 +68,6 @@
     overflow-x: scroll;
 }
 
-
 #rcorners7 {
     position:relative;
     border-radius: 12px;
@@ -62,93 +76,118 @@
     background-blend-mode: color rgb(9, 52, 192) saturation;
     background: linear-gradient(to top right,rgb(9, 52, 192), rgb(255, 255, 255), orange);
     width:fit-content;
-    align-content: center;
-    font-size: 14px;
+    max-height: max-content;
+    font-size: 20px;
     padding: 10px;
     padding-bottom: 10px;
     margin: 20px;
+    margin-inline: 10px;
     opacity: 0.8;
     
 }
 
-#rcorners4 {
-    position:relative,static;
-    border-radius: 12px;
-    box-shadow: 0 3px 9px black;
-    background-color: whitesmoke;
-    width: max-content;
-    padding: 10px;
-    padding-bottom: 10px;
+/* #rcorners4 {
+    border-radius: 25px;
+    background: whitesmoke;
+    padding: 20px; 
+    width: 800px;
+    height: 600px;
     margin: 20px;
-    opacity: 0.8;
-
-}
-
-#rcorners3 {
-    position:relative;
-    border-radius: 12px;
+    padding: 40px;
+    padding-left: 40px;
     box-shadow: 0 3px 9px rgb(4, 32, 158);
-    background-color: whitesmoke;
-    width: 450px;
-    height: auto;
-    padding: 10px;
-    padding-bottom: 10px;
-    margin: 20px;
-    opacity: 0.8;
-}
+
+} */
 
 
-h1 {
-    color: white;
-    padding-left: 20px;
-}
-
-h2 {
-    color: rgb(4, 81, 247);
-}
 
 
-#rcorners5 {
+.root {
+    /* box-shadow: 0 4px 10px 0 rgb(0,0,0,0.2); */
     position: relative;
-    /* border: 4px solid transparent; */
-    border-radius: 16px;
-    position:relative;
-    border-radius: 12px;
-    box-shadow: 0 3px 9px black;
+    transition: 0.3s;
     background-color: whitesmoke;
-    width:fit-content;
+    width: 500px;
+    height: 450px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: 20px;
+    padding: 20px;
+    padding-bottom: 30px;
+    opacity: 0.8;
+    box-shadow: 0 4px 10px rgb(18, 18, 20);
+    
+    
+    
+}
+
+.root:hover {
+    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.2);
+}
+
+
+
+.media {
+    background-image: url('./trips4.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 200px;
+    padding-top: 20px;
+    border-image: 20px;
+    border-radius: 10px  10px 0 0;
+    
+} 
+
+
+/* #rcorners5 {
+    position: relative;
+    background-color: rgb(14, 80, 202);
+    width: 500px;
+    height: 450px;
+    border-radius: 16px;
+    border-radius: 12px;
+
     padding: 10px;
     padding-bottom: 10px;
     margin: 20px;
     opacity: 0.8;
     background-clip: padding-box;
-    padding: 10px;
-    /* just to show box-shadow still works fine */
-    box-shadow: 0 3px 9px black;
-}
-    
-/* #rcorners5::after {
-    position: absolute;
-    top: -4px; bottom: -4px;
-    left: -4px; right: -4px;
-    background: linear-gradient(rgb(0, 58, 250), #a5d9f1);
-    content: '';
-    z-index: -1;
-    border-radius: 16px;
-} */
-    
+    padding: 10px; */
 
-#rcorners6 {
-    
+
+
+
+
+
+#rcorners3 {
+    position:relative;
     border-radius: 12px;
-    background: linear-gradient(to bottom left,rgb(255, 217, 165), rgb(250, 184, 60), orange);
-    box-shadow: 0 3px 9px black;
-    width:max-content;
+    box-shadow: 0 3px 9px rgb(28, 29, 31);
+    background-color: rgb(6, 41, 241);
+    width: 450px;
+    height: 400;
     padding: 10px;
-    margin-block: 20px;
+    padding-bottom: 10px;
+    margin: 20px;
+    font-size: 14px;
+    opacity: 18;
+    
+}
+
+
+
+
+h1 {
+    color: white;
+    padding-left: 50px;
+}
+
+
+
+
     
 
-}
+
 
 th {
     text-align: center;
@@ -164,31 +203,74 @@ td {
     box-sizing: border-box;
 }
 
+.forecast {
+    position: relative;
+    color: white;
+    font-size: 30px;
+    left: 40px
+    
+    
+}
 
+
+.mychart3 {
+    position: relative;
+    background-image: url('./windshield5.png');
+    width: 800px;
+    height: 660px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    bottom: -100px;
+    right: 200px;
+    
+
+
+}
+
+.degree {
+    position: relative;
+    font-size: 20px;
+    bottom: 490px;
+    left: 200px;
+    color: white;
+}
 
 .weatherforcast {
     display: grid;
     align-content: center;
     column-span: all;
+    grid-template-rows: 1;
     grid-template-columns: repeat(7, minmax(0, 1fr));
     grid-gap: 16px;
     margin: 16px;
+    padding-left: 162px;
+    padding-bottom: 250px;
+    width: 300px;
+    height: 500px;
     width:max-content;
+    color: white;
+    font-size: 18px;
+    left: 20px;
+
 }
 
-.weatherimg {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 80px;
-    align-content: center;
+
+.currentweather {
+    position:relative;
+    background-color: rgb(44, 247, 4);
+    left: 880px;
+    font-size: 24px;
+    top: -428px;
     
 }
 
+
 .weatheroutlook {
-    color: white;
-    align-content: center;
-    padding-left: 80px;
+    position: relative;
+    background-color: rgb(44, 247, 4);
+    left: 970px;
+    top: -400px;
+    
 
 }
 
@@ -197,4 +279,21 @@ td {
     padding-left: 20px;
     text-align:start;
     text-align-last:justify;
+  
+}
+
+#rcorners6 {
+    position: relative;
+    border-radius: 12px;
+    background: linear-gradient(to bottom left,rgb(255, 217, 165), rgb(250, 184, 60), orange);
+    box-shadow: 0 3px 9px black;
+    width: 295px;
+    height: 200px;
+    padding: 10px;
+    top: -340px;
+    left: 934px;
+
+    
+    
+
 }
