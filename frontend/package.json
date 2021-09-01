@@ -48,6 +48,9 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.32.13"
+    "dotenv-webpack": "^7.0.3",
+    "sass": "^1.32.13",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.7.2"
   }
 }
