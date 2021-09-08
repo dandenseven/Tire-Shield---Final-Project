@@ -179,11 +179,12 @@ function HomePage() {
 
 
         // tried using the environment variable with and without the envireonment variable
-        const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+        const apiKey = `{process.env.REACT_APP_WEATHER_KEY}`
+        console.log("API", apiKey)
 
-        // const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=2021518932&units=imperial&lang=en&appid=6693af864d042d45210a62d91db9b718`);
 
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=2021518932&units=imperial&lang=en&appid=API_KEY`);
+
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=2021518932&units=imperial&lang=en&appid={apiKey}`);
 
 
         const userWeather = await response.json();
