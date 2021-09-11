@@ -34,12 +34,12 @@ function WeatherPage() {
 
             switch (APIName) {
                 case "oneCall":
-                    APICall = `https://api.openweathermap.org/data/2.5/weather?lat=40.71&lon=-74.00&dt=20215101619&units=imperial&lang=en&appid=6693af864d042d45210a62d91db9b718`;
+                    APICall = `https://api.openweathermap.org/data/2.5/weather?lat=40.71&lon=-74.00&dt=20215101619&units=imperial&lang=en&appid=apiKey`;
                     
                     break;
 
                 case "reverseGeocoding":
-                    APICall = `https://maps.googleapis.com/maps/api/geocode/json?latlng=40.71,-74.00&key=AIzaSyC98mWMfSiEOhKrhwhN04WW2dKb_2lT_QY`;
+                    APICall = `https://maps.googleapis.com/maps/api/geocode/json?latlng=40.71,-74.00&key=apiKey2`;
 
                     break;
 
@@ -98,7 +98,7 @@ function WeatherPage() {
     // }
 
 
-    //     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=20215101619&lang=en&appid=6693af864d042d45210a62d91db9b718`);
+    //     const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=20215101619&lang=en&appid=apiKey`);
     //     const userWeather = await response.json();
     //     console.log(userWeather)
     //     setWeather(userWeather);
@@ -109,7 +109,7 @@ function WeatherPage() {
 
         // return {success: false, error: response.statusText };
 
-    //     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.71,-74.00&key=AIzaSyC98mWMfSiEOhKrhwhN04WW2dKb_2lT_QY`);
+    //     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.71,-74.00&key=apiKey2`);
     //     const userLocation = await response.json();
     //     console.log(userLocation)
     //     setUserLocation(userLocation);
