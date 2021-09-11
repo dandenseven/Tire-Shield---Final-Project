@@ -43,7 +43,7 @@ function TripsPage() {
     //     let googleMap;
     //     useEffect(() => {
     //         const googleMapScript = document.createElement('script');
-    //         googleMapScript.src=`https://maps.googleapis.com/maps/api/js?key=${process.env.$AIzaSyCQhrXAef1CC64n1hQy1saTeW3vnB2O6jY}&libraries=places`;
+    //         googleMapScript.src=`https://maps.googleapis.com/maps/api/js?key=${process.env.$apiKey3}&libraries=places`;
     //         googleMapScript.async = true;
     //         window.document.body.appendChild(googleMapScript);
     //         googleMapScript.addEventListener('load', () => {
@@ -92,7 +92,7 @@ function TripsPage() {
             mode: 'no cors',
             headers: {"Content-Type": "application/json"}
         }
-        const response = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=1235+Prospect+Ave+Brooklyn?destinations=12+Main+Street+Maplewood+NJ?departure_time=1622557978157?mode=transit?key=AIzaSyCeekjB_1EKlLksb82sVZe6riCox1jZghs`);
+        const response = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=1235+Prospect+Ave+Brooklyn?destinations=12+Main+Street+Maplewood+NJ?departure_time=1622557978157?mode=transit?key=apiKey2`);
        
         const userDirections = await response.json();
         console.log(userDirections)
