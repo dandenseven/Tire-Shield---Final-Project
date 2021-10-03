@@ -4,12 +4,12 @@ import 'firebase/firestore';
 
 
 const config = {
-    apiKey: "AIzaSyDEbzt9TfJJZZxuZsH_qXv3eeb5g62GgmE",
+    apiKey: "APIKEY",
     authDomain: "my-finalproject-2b552.firebaseapp.com",
     databaseURL: "https://my-finalproject-2b552-default-rtdb.firebaseio.com/",
     projectId: "my-finalproject-2b552",
     storageBucket: "my-finalproject-2b552.appspot.com",
-    messagingSenderId: "512038742459",
+    messagingSenderId: "MESS_ID",
 };
 
 class Firebase {
