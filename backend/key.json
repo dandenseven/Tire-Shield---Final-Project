@@ -2,7 +2,7 @@
   "type": "service_account",
   "project_id": "my-finalproject-2b552",
   "private_key_id": "APIKEY",
-  "private_key": "-----BEGIN PRIVATE KEY-----\PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
+  "private_key": "-----BEGIN PRIVATE KEY-----\1PRIVATE_KEY\n-----END PRIVATE KEY-----\n",
   "client_email": "firebase-adminsdk-2ki1p@my-finalproject-2b552.iam.gserviceaccount.com",
   "client_id": "CLIENT_ID",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
