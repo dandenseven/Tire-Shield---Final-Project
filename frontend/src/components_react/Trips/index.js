@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef} from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 import '../../Sass/Components/Rcorners.scss';
@@ -8,35 +8,30 @@ import Typography from '@material-ui/core/Typography';
 
 
 
-function TripsPage() { 
-    const[trips, setTrips] = useState([]);
-    const[directions, setDirections] = useState([]);
-    const[maps, setMaps] = useState([])
+function TripsPage() {
+    const [trips, setTrips] = useState([]);
+    const [directions, setDirections] = useState([]);
+    const [maps, setMaps] = useState([])
 
     const userId = useContext(FirebaseContext).auth.currentUser.uid
-
-
-
-    // const cors = req('cors');
-
-    // app.use((req,res, next)=>{
-    //     res.setHeader('Access-Control-Allow-Origin',"http://localhost:3000");
-    //     res.setHeader('Access-Control-Allow-Headers',"*");
-    //     res.header('Access-Control-Allow-Credentials', true);
-    //     next();
-    // });
 
     async function getTrips() {
         const configs = {
             method: 'post',
-            body: JSON.stringify({"user_id": userId}),
-            headers: {"Content-Type": "application/json"}
+            body: JSON.stringify({ "user_id": userId }),
+            headers: { "Content-Type": "application/json" }
         }
         const response = await fetch("http://localhost:5000/api/users_trip", configs);
         const userTrips = await response.json();
         console.log(userTrips)
         setTrips(userTrips);
     }
+
+
+
+
+    // Additional features to be added to application
+
 
     // const googleMap = ({ placeName }) => {
     //     const googlemapRef = useRef();
@@ -50,7 +45,7 @@ function TripsPage() {
     //             getLatLng();
     //         })
     //     },[]);
-        
+
     //     const createGoogleMap = (coordinates) => {
     //         googleMap = new window.google.maps.Map(google.MapRef.current, {
     //             zoom: 16,
@@ -78,22 +73,22 @@ function TripsPage() {
     //                         title: `${placeName}`,
     //                     });
     //                 },  
-                    
+
     //                 // else({"Geocode was not successful for the following reasons: status": }setTrips
 
     //                 );
     //             }
-        
+
     //     };
 
 
     async function getDirections() {
         const configs = {
             mode: 'no cors',
-            headers: {"Content-Type": "application/json"}
+            headers: { "Content-Type": "application/json" }
         }
         const response = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=1235+Prospect+Ave+Brooklyn?destinations=12+Main+Street+Maplewood+NJ?departure_time=1622557978157?mode=transit?key=apiKey2`);
-       
+
         const userDirections = await response.json();
         console.log(userDirections)
         setDirections(userDirections);
@@ -102,18 +97,18 @@ function TripsPage() {
 
 
 
-    useEffect (() => getTrips(), []);
+    useEffect(() => getTrips(), []);
     // const test = trips.map(t => <p></p>)
 
-    useEffect (() => getDirections(), []);
+    useEffect(() => getDirections(), []);
 
 
 
     return (
-        
-            
+
+
         <div className="container3">
-        
+
             {/* <label for="input">Starting Address:</label>
             <input type="text" id="input" name="input"></input>
             <label for="input">Trip Destination:</label>
@@ -124,51 +119,51 @@ function TripsPage() {
 
 
             <p>inputs for trip start destination and end destination</p>
-                <p>Trip history</p>
-                    <p>Map</p>
+            <p>Trip history</p>
+            <p>Map</p>
 
 
-                <div className="example-parent">
-                    {trips.map(trip => 
-                        <div>
-                            <div className="root">
-                                <CardMedia
-                                    className="media">
-                                </CardMedia>
-                                <table>
-                                    <p id={"rcorners1"}><tr>
-                                        <th>Starting route:</th>
-                                        <th>{trip.starting}</th><bk></bk>
-                                        </tr><bk></bk>
-                                        <tr>
-                                            <th>Destination:</th>
-                                            <td>{trip.destination}</td>
-                                        </tr><bk></bk>
-                                        <tr>
-                                            <th>Distance:</th>
-                                            <td>{trip.distance}</td>
-                                        </tr><bk></bk>
-                                        <tr>
-                                            <th>Weather:</th>
-                                            <td>{trip.weather}</td>
-                                        </tr><bk></bk>
-                                        <tr></tr>
-                                        <tr>
-                                            <th>Start date:</th>
-                                            <td>{trip.start_date}</td>
-                                        </tr><bk></bk>
-                                        <tr>
-                                            <th>End date:</th>
-                                            <td>{trip.end_date}</td>
-                                        </tr><bk></bk>
-                                        
-                                        </p>
-                                </table>
-                            </div>
-                        </div>)}
-                </div>
+            <div className="example-parent">
+                {trips.map(trip =>
+                    <div>
+                        <div className="root">
+                            <CardMedia
+                                className="media">
+                            </CardMedia>
+                            <table>
+                                <p id={"rcorners1"}><tr>
+                                    <th>Starting route:</th>
+                                    <th>{trip.starting}</th><bk></bk>
+                                </tr><bk></bk>
+                                    <tr>
+                                        <th>Destination:</th>
+                                        <td>{trip.destination}</td>
+                                    </tr><bk></bk>
+                                    <tr>
+                                        <th>Distance:</th>
+                                        <td>{trip.distance}</td>
+                                    </tr><bk></bk>
+                                    <tr>
+                                        <th>Weather:</th>
+                                        <td>{trip.weather}</td>
+                                    </tr><bk></bk>
+                                    <tr></tr>
+                                    <tr>
+                                        <th>Start date:</th>
+                                        <td>{trip.start_date}</td>
+                                    </tr><bk></bk>
+                                    <tr>
+                                        <th>End date:</th>
+                                        <td>{trip.end_date}</td>
+                                    </tr><bk></bk>
+
+                                </p>
+                            </table>
+                        </div>
+                    </div>)}
+            </div>
         </div>
-            
+
     );
 
 

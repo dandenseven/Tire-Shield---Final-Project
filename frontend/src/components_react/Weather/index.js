@@ -4,13 +4,13 @@ import { FirebaseContext } from '../Firebase';
 import { AuthUserContext, withAuthorization } from '../Session';
 
 function WeatherPage() {
-    const[weather, setWeather] = useState({});
-    const[userLocation, setUserLocation] = useState({});
-    const[currentLocation, setCurrentLocation] = useState("");
+    const [weather, setWeather] = useState({});
+    const [userLocation, setUserLocation] = useState({});
+    const [currentLocation, setCurrentLocation] = useState("");
 
 
 
-    const userId = useContext(FirebaseContext).auth.currentUser.uid 
+    const userId = useContext(FirebaseContext).auth.currentUser.uid
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -35,7 +35,7 @@ function WeatherPage() {
             switch (APIName) {
                 case "oneCall":
                     APICall = `https://api.openweathermap.org/data/2.5/weather?lat=40.71&lon=-74.00&dt=20215101619&units=imperial&lang=en&appid=apiKey`;
-                    
+
                     break;
 
                 case "reverseGeocoding":
@@ -48,16 +48,16 @@ function WeatherPage() {
                     break;
 
             };
-            
+
 
             let response = await fetch(APICall);
             let data = await response.json();
             APIName === "reverseGeocoding" ?
-            stateFunction(data.results[0].address_components) :
-            stateFunction(data);
+                stateFunction(data.results[0].address_components) :
+                stateFunction(data);
             console.log(data);
         };
-        
+
 
         if (typeof currentLocation.latitude != "undefined") {
             fetchData("oneCall", currentLocation, setWeather);
@@ -68,17 +68,19 @@ function WeatherPage() {
     }, [currentLocation]);
 
 
+    // The goal is to add these api features to the weather page at later time
+
     // async function getWeather() {
 
     // navigator.geolocation.getCurrentPosition(
     //         function(location) { console.log(location) }
     //     )
-        // const configs = {
-        //     method: 'get',
-        //     data: JSON.stringify({}),
-        //     headers: {"Content-Type": "application/json"}
-    
-    
+    // const configs = {
+    //     method: 'get',
+    //     data: JSON.stringify({}),
+    //     headers: {"Content-Type": "application/json"}
+
+
     // function getPosition(location) {
     //     return location
     // }
@@ -103,11 +105,11 @@ function WeatherPage() {
     //     console.log(userWeather)
     //     setWeather(userWeather);
 
-        // if (response.status === 200) {
-        //     return { success: true, data: response.json() };
-        // }
+    // if (response.status === 200) {
+    //     return { success: true, data: response.json() };
+    // }
 
-        // return {success: false, error: response.statusText };
+    // return {success: false, error: response.statusText };
 
     //     const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=40.71,-74.00&key=apiKey2`);
     //     const userLocation = await response.json();
@@ -118,17 +120,17 @@ function WeatherPage() {
 
     // useEffect (() => getWeather(), []);
 
-        return (
-            <div>
-                <h1>Current Weather</h1>
-                <button onClick={() => console.log(currentLocation)}>Show coordinates</button>
-                <p>Local Weather Forecast</p>
-                    <p> 7 seven day weather forcast</p>
-                        <p>weather alerts</p>
-                            <p>weather related tire warnings</p>
-            </div>
+    return (
+        <div>
+            <h1>Current Weather</h1>
+            <button onClick={() => console.log(currentLocation)}>Show coordinates</button>
+            <p>Local Weather Forecast</p>
+            <p> 7 seven day weather forcast</p>
+            <p>weather alerts</p>
+            <p>weather related tire warnings</p>
+        </div>
 
-        );
+    );
 }
 
 const condition = authUser => !!authUser;

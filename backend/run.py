@@ -15,6 +15,5 @@ Users.users_ref = db.collection('users')
 Vehicle.vehicle_ref = db.collection('vehicle')
 Trip.trip_ref = db.collection('trip')
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run()
-

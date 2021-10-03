@@ -1,12 +1,13 @@
 import datetime
 from firebase_admin import credentials, firestore, initialize_app
 
+
 class Vehicle:
 
-    vehicle_ref = "" # we could set this later at runtime
-    
-    def __init__(self, make="", model="", vehicle_miles=int, tire_miles=int, 
-                    tire_purchase_date="", rotation_miles=int, warranty_miles=int, color="", user_id=None, vehicle_id=None):
+    vehicle_ref = ""  # we could set this later at runtime
+
+    def __init__(self, make="", model="", vehicle_miles=int, tire_miles=int,
+                 tire_purchase_date="", rotation_miles=int, warranty_miles=int, color="", user_id=None, vehicle_id=None):
 
         self.make = make
         self.model = model
@@ -18,12 +19,10 @@ class Vehicle:
         self.color = color
         self.user_id = user_id
         self.vehicle_id = vehicle_id
-        
-
 
     def to_json(self):
-        return {"make": self.make, 
-                "model": self.model, 
+        return {"make": self.make,
+                "model": self.model,
                 "vehicle_miles": int(self.vehicle_miles),
                 "tire_miles": int(self.tire_miles),
                 "tire_purchase_date": self.tire_purchase_date,
@@ -32,16 +31,15 @@ class Vehicle:
                 "color": self.color,
                 "user_id": self.user_id,
                 "vehicle_id": self.vehicle_id
-               }
-
+                }
 
     def reset_tires(self):
-        self.vehicle_ref.document(self.vehicle_id).update({"tire_miles": 0, "rotation_miles": 0})
+        self.vehicle_ref.document(self.vehicle_id).update(
+            {"tire_miles": 0, "rotation_miles": 0})
 
     def reset_rotation_tires(self):
-        self.vehicle_ref.document(self.vehicle_id).update({"rotation_miles": 0})
-
-
+        self.vehicle_ref.document(
+            self.vehicle_id).update({"rotation_miles": 0})
 
     def insert(self):
         response = self.vehicle_ref.document().set(self.to_json())
@@ -61,8 +59,6 @@ class Vehicle:
     # @classmethod
     # def vehicles_all_for_user(cls, user_id):
     #     return cls.vehicle_ref.where("user_id", "==", user_id).get()
-        
-
 
 
 if __name__ == "__main__":

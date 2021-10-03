@@ -1,20 +1,9 @@
 import React, { useContext, useState, useEffect, useLayoutEffect } from 'react';
 import { FirebaseContext } from '../Firebase';
 import './home.css';
-// import '../../Sass/Components/Rcorners.scss';
 import { AuthUserContext, withAuthorization } from '../Session';
-import { ThemeProvider } from '@material-ui/styles';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import NewYork from './NewYork.png';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import ScrollMenu from 'react-horizontal-scrolling-menu';
-import FlexboxPage from 'react-bootstrap';
 require('dotenv').config();
 
 
@@ -27,24 +16,6 @@ function HomePage() {
     const userId = useContext(FirebaseContext).auth.currentUser.uid
 
     const precip = weather.minutely && weather.minutely.reduce((a, b) => a + b.precipitation, 0)
-
-
-
-    // const useStyles = makeStyles({
-    //     root: {
-    //         maxWidth: "500px",
-    //         height: "300px",
-    //         borderRadius: "5px",
-    //         boxShadow: "0 4px 40px 0 rgba(0,0,0,0.2)",
-    //         margin: "40px"
-    //     },
-
-    //     media: {
-    //         height: 350
-    //     }
-    // });
-
-    // const classes = useStyles();
 
 
 
@@ -178,10 +149,8 @@ function HomePage() {
     async function getWeather() {
 
 
-        // tried using the environment variable with and without the envireonment variable
         const apiKey = `{process.env.REACT_APP_WEATHER_KEY}`
         console.log("API", apiKey)
-
 
 
         const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=40.71&lon=-74.00&dt=2021518932&units=imperial&lang=en&appid={apiKey}`);
@@ -269,9 +238,6 @@ function HomePage() {
 
                                 <th>Rain:</th>
                                 <th>{weather.daily && (getInches(weather.daily[0].rain))}
-                                    {/* if getInches(weather.daily[0].rain < 0.1) {
-                                                            getInches(weather.daily[0].rain === 0)
-                                                        }; */}
                                 </th>
 
                             </div>
@@ -299,14 +265,9 @@ function HomePage() {
 
                         <div>
                             <div className="root">
-                                {/* <CardActionArea> */}
                                 <CardMedia
                                     className="media"><th> &nbsp;Place holder</th>
                                 </CardMedia>
-
-                                {/* <CardContent>
-                                                        <Typography>                          */}
-                                {/* <div id="rcorners5"> */}
                                 <div>
                                     <th>Starting route -&nbsp;</th>
                                     <td>{trip.starting}</td><bk></bk>
@@ -332,11 +293,6 @@ function HomePage() {
                                     <th>End date -&nbsp;</th>
                                     <td>{showDate(trip.end_date)}</td>
                                 </div><bk></bk>
-                                {/* </div> */}
-                                {/* </Typography>
-                                                    </CardContent> */}
-
-                                {/* </CardActionArea> */}
                             </div>
                         </div>
                     )}
